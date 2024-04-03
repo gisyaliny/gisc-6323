@@ -1,0 +1,839 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>5. Autograd &#8212; Machine Learning for Socio-Economic and Georeferenced Data</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b76e3c8a" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'book/torch/05-Autograd';</script>
+    <link rel="canonical" href="https://gisyaliny.github.io/gisc-6323/book/torch/05-Autograd.html" />
+    <link rel="icon" href="../../_static/fav.ico"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="prev" title="4. Gradient Descent (GD)" href="04-SGD.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/logo.png" class="logo__image only-light" alt="Machine Learning for Socio-Economic and Georeferenced Data - Home"/>
+    <script>document.write(`<img src="../../_static/logo.png" class="logo__image only-dark" alt="Machine Learning for Socio-Economic and Georeferenced Data - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Introduction &amp; Overview</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Intro/author.html">About the Author</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Intro/preface.html">Preface</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Deep Learning with R torch</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="01-torch-installation.html">1. <code class="docutils literal notranslate"><span class="pre">torch</span></code> Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02-tensorflow-installation.html">2. <code class="docutils literal notranslate"><span class="pre">Keras</span></code> installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03-Tensor.html">3. Tensor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04-SGD.html">4. Gradient Descent (GD)</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">5. Autograd</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/gisyaliny/gisc-6323" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/gisyaliny/gisc-6323/edit/main/book/torch/05-Autograd.md" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/gisyaliny/gisc-6323/issues/new?title=Issue%20on%20page%20%2Fbook/torch/05-Autograd.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/book/torch/05-Autograd.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Autograd</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-compute-derivatives">5.1. Why compute derivatives?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#automatic-differentiation-example">5.2. Automatic differentiation example</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#automatic-differentiation-with-torch-autograd">5.3. Automatic differentiation with <code class="docutils literal notranslate"><span class="pre">torch</span></code> autograd</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#minimize-loss-function-with-autograd">5.4. Minimize loss function with <code class="docutils literal notranslate"><span class="pre">autograd</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#minimization-from-scratch">5.4.1. Minimization from scratch</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lab">5.5. Lab</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="autograd">
+<h1><span class="section-number">5. </span>Autograd<a class="headerlink" href="#autograd" title="Link to this heading">#</a></h1>
+<ul class="simple">
+<li><p><a class="reference external" href="https://skeydan.github.io/Deep-Learning-and-Scientific-Computing-with-R-torch/autograd.html">Reference</a></p></li>
+<li><p>Learning Material for
+<a class="reference external" href="https://gisyaliny.github.io/notes/Math/Advance-Math/Chapter2-Differential/">Differential</a></p></li>
+<li><p>Learning Material for <a class="reference external" href="https://gisyaliny.github.io/notes/Math/Linear-Algbra/Chapter1-Interpretaion/">Linear
+Algbra</a></p></li>
+<li><p>Learning Material for <a class="reference external" href="https://www.youtube.com/watch?v=ZK3O402wf1c&amp;amp;list=PL49CF3715CB9EF31D&amp;amp;index=1&amp;amp;ab_channel=MITOpenCourseWare">Linear Algbra
+(Video)</a></p></li>
+</ul>
+<p>Frameworks like <code class="docutils literal notranslate"><span class="pre">torch</span></code> are so popular because of what you can do with
+them: deep learning, machine learning, optimization, large-scale
+scientific computation in general. * Most of these application areas
+involve minimizing some <code class="docutils literal notranslate"><span class="pre">loss</span></code> function. * This, in turn, entails
+computing function <code class="docutils literal notranslate"><span class="pre">derivatives</span></code>.</p>
+<section id="why-compute-derivatives">
+<h2><span class="section-number">5.1. </span>Why compute derivatives?<a class="headerlink" href="#why-compute-derivatives" title="Link to this heading">#</a></h2>
+<p>The training, or learning, process, is based on comparing the
+algorithm’s predictions with the ground truth, a <strong>comparison</strong> that
+leads to a number capturing <strong>how good or bad the current predictions
+are</strong>. To provide this number is the job of the <code class="docutils literal notranslate"><span class="pre">loss</span></code> function.</p>
+<p><img alt="" src="https://skeydan.github.io/Deep-Learning-and-Scientific-Computing-with-R-torch/images/autograd-paraboloid.png" /></p>
+<p>This is a quadratic function of two variables:
+<em>f</em>(<em>x</em><sub>1</sub>,<em>x</em><sub>2</sub>) = 0.2<em>x</em><sub>1</sub><sup>2</sup> + 0..2<em>x</em><sub>2</sub><sup>2</sup> − 5.
+* It has its minimum at (0,0), and this is the point we’d like to be
+at. * Take the <em>x</em><sub>1</sub> direction. The derivative of the
+function with respect to <em>x</em><sub>1</sub> indicates how its value varies
+as <em>x</em><sub>1</sub> varies. * We can compute the <code class="docutils literal notranslate"><span class="pre">partial</span> <span class="pre">derivative</span></code> of
+<em>x</em><sub>1</sub>, which is <span class="math notranslate nohighlight">\(\frac{\partial f}{\partial x_1}=0.4x_1\)</span>. *
+This tells us that as <em>x</em><sub>1</sub> increases, loss increases, and how
+fast. * The same holds for the <em>x</em><sub>2</sub>. * We want to take the
+direction opposite to where the derivative points.</p>
+<p>Overall, this yields a descent direction of
+[−0.4<em>x</em><sub>1</sub>,−0.4<em>x</em><sub>2</sub>]</p>
+<p>Descriptively, this strategy is called <code class="docutils literal notranslate"><span class="pre">steepest</span> <span class="pre">descent</span></code>. Commonly
+referred to as <code class="docutils literal notranslate"><span class="pre">gradient</span> <span class="pre">descent</span></code>, it is the most basic optimization
+algorithm in deep learning.</p>
+</section>
+<section id="automatic-differentiation-example">
+<h2><span class="section-number">5.2. </span>Automatic differentiation example<a class="headerlink" href="#automatic-differentiation-example" title="Link to this heading">#</a></h2>
+<p>Now that we know why we need <code class="docutils literal notranslate"><span class="pre">derivatives</span></code>, let’s see how
+<code class="docutils literal notranslate"><span class="pre">automatic</span> <span class="pre">differentiation</span> <span class="pre">(AD)</span></code> would compute
+<em>f</em>(<em>x</em><sub>1</sub>,<em>x</em><sub>2</sub>) = 0.2<em>x</em><sub>1</sub><sup>2</sup> + 0..2<em>x</em><sub>2</sub><sup>2</sup> − 5</p>
+<p>This fig is how our above function could be represented in a
+computational graph.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">x1</span></code> and <code class="docutils literal notranslate"><span class="pre">x2</span></code> are input nodes, corresponding to function parameters
+<em>x</em><sub>1</sub> and <em>x</em><sub>2</sub>, <code class="docutils literal notranslate"><span class="pre">x7</span></code> is the function’s output</p></li>
+</ul>
+<p><img alt="" src="https://skeydan.github.io/Deep-Learning-and-Scientific-Computing-with-R-torch/images/autograd-compgraph.png" />
+In reverse-mode AD, the flavor of <strong>automatic differentiation</strong>
+implemented by <code class="docutils literal notranslate"><span class="pre">torch</span></code></p>
+<ol class="arabic simple">
+<li><p>Calculate the function’s output value (<code class="docutils literal notranslate"><span class="pre">x7</span></code>).</p></li>
+</ol>
+<ul class="simple">
+<li><p>This corresponds to a <code class="docutils literal notranslate"><span class="pre">forward</span> <span class="pre">pass</span></code> through the graph.</p></li>
+</ul>
+<ol class="arabic simple">
+<li><p>Calculate the gradient of the output with respect to both inputs,
+<em>x</em><sub>1</sub> and <em>x</em><sub>2</sub></p></li>
+</ol>
+<ul class="simple">
+<li><p>This is a <code class="docutils literal notranslate"><span class="pre">backward</span> <span class="pre">pass</span></code></p></li>
+<li><p>At <code class="docutils literal notranslate"><span class="pre">x7</span></code>, we calculate partial derivatives with respect to <code class="docutils literal notranslate"><span class="pre">x5</span></code> and
+<code class="docutils literal notranslate"><span class="pre">x6</span></code>.</p></li>
+<li><p>From <code class="docutils literal notranslate"><span class="pre">x5</span></code>, we move to the left to see how it depends on <code class="docutils literal notranslate"><span class="pre">x3</span></code>.</p></li>
+<li><p>From <code class="docutils literal notranslate"><span class="pre">x3</span></code>, we take the final step to <code class="docutils literal notranslate"><span class="pre">x</span></code>.</p></li>
+<li><p>This process applied the chain rule in derivatives, we call this
+process <code class="docutils literal notranslate"><span class="pre">back</span> <span class="pre">propagation</span></code></p></li>
+</ul>
+</section>
+<section id="automatic-differentiation-with-torch-autograd">
+<h2><span class="section-number">5.3. </span>Automatic differentiation with <code class="docutils literal notranslate"><span class="pre">torch</span></code> autograd<a class="headerlink" href="#automatic-differentiation-with-torch-autograd" title="Link to this heading">#</a></h2>
+<p>In <code class="docutils literal notranslate"><span class="pre">torch</span></code>, the <code class="docutils literal notranslate"><span class="pre">AD</span> <span class="pre">engine</span></code> is usually referred to as <code class="docutils literal notranslate"><span class="pre">autograd</span></code>, and
+that is the way you’ll see it denoted in most of the rest of this book.</p>
+<p>To construct the above computational graph with <code class="docutils literal notranslate"><span class="pre">torch</span></code>, we create
+“source” tensors <code class="docutils literal notranslate"><span class="pre">x1</span></code> and <code class="docutils literal notranslate"><span class="pre">x2</span></code>.</p>
+<p>However, if we just proceed “as usual”, creating the tensors the way
+we’ve been doing so far, <code class="docutils literal notranslate"><span class="pre">torch</span></code> will not prepare for AD. Instead, we
+need to pass in <code class="docutils literal notranslate"><span class="pre">requires_grad</span> <span class="pre">=</span> <span class="pre">TRUE</span></code> when instantiating those tensors:</p>
+<p>(By the way, the value <code class="docutils literal notranslate"><span class="pre">2</span></code> for both tensors was chosen completely
+arbitrarily.)</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">library</span><span class="p">(</span><span class="n">torch</span><span class="p">)</span>
+
+<span class="n">x1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">torch_tensor</span><span class="p">(</span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="n">requires_grad</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span>
+<span class="n">x2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">torch_tensor</span><span class="p">(</span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="n">requires_grad</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Now, to create “invisible” nodes <code class="docutils literal notranslate"><span class="pre">x3</span></code> to <code class="docutils literal notranslate"><span class="pre">x6</span></code> , we square and multiply
+accordingly. Then <code class="docutils literal notranslate"><span class="pre">x7</span></code> stores the final result.</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">x3</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">x1</span><span class="o">$</span><span class="nf">square</span><span class="p">()</span>
+<span class="n">x5</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">x3</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="m">0.2</span>
+
+<span class="n">x4</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">x2</span><span class="o">$</span><span class="nf">square</span><span class="p">()</span>
+<span class="n">x6</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">x4</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="m">0.2</span>
+
+<span class="n">x7</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">x5</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">x6</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="m">5</span>
+<span class="n">x7</span>
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>## torch_tensor
+## -3.4000
+## [ CPUFloatType{1} ][ grad_fn = &lt;SubBackward1&gt; ]
+</pre></div>
+</div>
+<p>Note that we have to add <code class="docutils literal notranslate"><span class="pre">requires_grad</span> <span class="pre">=</span> <span class="pre">TRUE</span></code> when creating the
+“source” tensors only. All dependent nodes in the graph <strong>inherit</strong> this
+property. For example</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">x7</span><span class="o">$</span><span class="n">requires_grad</span>
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>## [1] TRUE
+</pre></div>
+</div>
+<p>Now, all prerequisites are fulfilled to see automatic differentiation at
+work.</p>
+<p>All we need to do to determine how <code class="docutils literal notranslate"><span class="pre">x7</span></code> depends on <code class="docutils literal notranslate"><span class="pre">x1</span></code> and <code class="docutils literal notranslate"><span class="pre">x2</span></code> is call
+<code class="docutils literal notranslate"><span class="pre">backward()</span></code>:</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">x7</span><span class="o">$</span><span class="nf">backward</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Due to this call, the <code class="docutils literal notranslate"><span class="pre">$grad</span></code> fields have been populated in <code class="docutils literal notranslate"><span class="pre">x1</span></code> and
+<code class="docutils literal notranslate"><span class="pre">x2</span></code></p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">x1</span><span class="o">$</span><span class="n">grad</span>
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>## torch_tensor
+##  0.8000
+## [ CPUFloatType{1} ]
+</pre></div>
+</div>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">x2</span><span class="o">$</span><span class="n">grad</span>
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>## torch_tensor
+##  0.8000
+## [ CPUFloatType{1} ]
+</pre></div>
+</div>
+<p>These are the partial derivatives of <code class="docutils literal notranslate"><span class="pre">x7</span></code> with respect to <code class="docutils literal notranslate"><span class="pre">x1</span></code> and <code class="docutils literal notranslate"><span class="pre">x2</span></code>,
+respectively.</p>
+<p>Our partial derivative is [−0.4<em>x</em><sub>1</sub>,−0.4<em>x</em><sub>2</sub>]</p>
+<p>Conforming to it, both amount to 0.8, that is, 0.4 times the tensor
+values 2 and 2.</p>
+</section>
+<section id="minimize-loss-function-with-autograd">
+<h2><span class="section-number">5.4. </span>Minimize loss function with <code class="docutils literal notranslate"><span class="pre">autograd</span></code><a class="headerlink" href="#minimize-loss-function-with-autograd" title="Link to this heading">#</a></h2>
+<p>Assume we want to find <em>x</em><sub>1</sub> and <em>x</em><sub>2</sub> that achieve
+the minimum value of <em>f</em> when
+<em>f</em> = (1−<em>x</em><sub>1</sub>)<sup>2</sup> + 5 * (<em>x</em><sub>2</sub>−<em>x</em><sub>1</sub><sup>2</sup>)<sup>2</sup></p>
+<p><img alt="" src="https://skeydan.github.io/Deep-Learning-and-Scientific-Computing-with-R-torch/images/optim-1-rosenbrock.png" /></p>
+<p>Here is the function definition.</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">a</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">1</span>
+<span class="n">b</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">5</span>
+
+<span class="n">rosenbrock</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">function</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">x1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">x</span><span class="p">[</span><span class="m">1</span><span class="p">]</span>
+<span class="w">  </span><span class="n">x2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">x</span><span class="p">[</span><span class="m">2</span><span class="p">]</span>
+<span class="w">  </span><span class="p">(</span><span class="n">a</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">x1</span><span class="p">)</span><span class="o">^</span><span class="m">2</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="n">x2</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">x1</span><span class="o">^</span><span class="m">2</span><span class="p">)</span><span class="o">^</span><span class="m">2</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<section id="minimization-from-scratch">
+<h3><span class="section-number">5.4.1. </span>Minimization from scratch<a class="headerlink" href="#minimization-from-scratch" title="Link to this heading">#</a></h3>
+<p>In a nutshell, the optimization procedure then looks somewhat like this:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># attention: this is not the correct procedure yet!
+
+for (i in 1:num_iterations) {
+
+  # call function, passing in current parameter value
+  value &lt;- rosenbrock(x)
+
+  # compute gradient of value w.r.t. parameter
+  value$backward()
+
+  # manually update parameter, subtracting a fraction
+  # of the gradient
+  # this is not quite correct yet!
+  x$sub_(lr * x$grad)
+}
+</pre></div>
+</div>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">lr</span></code>, for <code class="docutils literal notranslate"><span class="pre">learning</span> <span class="pre">rate</span></code>, is the fraction of the gradient to
+subtract on every step</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">num_iterations</span></code> is the number of steps to take.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">x</span></code> is the parameter to optimize, that is, it is the function input
+that hopefully, at the end of the process, will yield the minimum
+possible function value.</p>
+<ul class="simple">
+<li><p>And that, in turn, means we need to create it with
+<code class="docutils literal notranslate"><span class="pre">requires_grad</span> <span class="pre">=</span> <span class="pre">TRUE</span></code>:</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">&lt;-</span> <span class="pre">torch_tensor(c(-1,</span> <span class="pre">1),</span> <span class="pre">requires_grad</span> <span class="pre">=</span> <span class="pre">TRUE)</span></code></p></li>
+<li><p>The starting point, <code class="docutils literal notranslate"><span class="pre">(-1,1)</span></code>, here has been chosen arbitrarily.</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">torch</span></code> will record all operations performed on that tensor, meaning
+that whenever we call <code class="docutils literal notranslate"><span class="pre">backward()</span></code>, it will compute all required
+derivatives.</p>
+<ul class="simple">
+<li><p>However, when we subtract a fraction of the gradient, this is
+not something we want a derivative to be calculated for!</p></li>
+<li><p>We need to tell <code class="docutils literal notranslate"><span class="pre">torch</span></code> not to record this action, and that we
+can do by wrapping it in <code class="docutils literal notranslate"><span class="pre">with_no_grad()</span></code>.</p></li>
+<li><p>By default, <code class="docutils literal notranslate"><span class="pre">torch</span></code> accumulates the gradients stored in <code class="docutils literal notranslate"><span class="pre">grad</span></code>
+fields. We need to <strong>zero them out</strong> for every new calculation,
+using <code class="docutils literal notranslate"><span class="pre">grad$zero_()</span></code>.</p></li>
+<li><p>Here is the sample code</p></li>
+</ul>
+<!-- -->
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>with_no_grad({
+  x$sub_(lr * x$grad)
+  x$grad$zero_()
+})
+</pre></div>
+</div>
+</li>
+</ul>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">num_iterations</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">1000</span>
+
+<span class="n">lr</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">0.01</span>
+
+<span class="n">x</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">torch_tensor</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="m">-1</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">),</span><span class="w"> </span><span class="n">requires_grad</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span>
+
+<span class="nf">for </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="n">num_iterations</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nf">if </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">%%</span><span class="w"> </span><span class="m">100</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m">0</span><span class="p">)</span><span class="w"> </span><span class="nf">cat</span><span class="p">(</span><span class="s">&quot;Iteration: &quot;</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;\n&quot;</span><span class="p">)</span>
+
+<span class="w">  </span><span class="n">value</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">rosenbrock</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="w">  </span><span class="nf">if </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">%%</span><span class="w"> </span><span class="m">100</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nf">cat</span><span class="p">(</span><span class="s">&quot;Value is: &quot;</span><span class="p">,</span><span class="w"> </span><span class="nf">as.numeric</span><span class="p">(</span><span class="n">value</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;\n&quot;</span><span class="p">)</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="n">value</span><span class="o">$</span><span class="nf">backward</span><span class="p">()</span>
+<span class="w">  </span><span class="nf">if </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">%%</span><span class="w"> </span><span class="m">100</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nf">cat</span><span class="p">(</span><span class="s">&quot;Gradient is: &quot;</span><span class="p">,</span><span class="w"> </span><span class="nf">as.matrix</span><span class="p">(</span><span class="n">x</span><span class="o">$</span><span class="n">grad</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;\n&quot;</span><span class="p">)</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="nf">with_no_grad</span><span class="p">({</span>
+<span class="w">    </span><span class="n">x</span><span class="o">$</span><span class="nf">sub_</span><span class="p">(</span><span class="n">lr</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">x</span><span class="o">$</span><span class="n">grad</span><span class="p">)</span>
+<span class="w">    </span><span class="n">x</span><span class="o">$</span><span class="n">grad</span><span class="o">$</span><span class="nf">zero_</span><span class="p">()</span>
+<span class="w">  </span><span class="p">})</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>## Iteration:  100 
+## Value is:  0.3502924 
+## Gradient is:  -0.667685 -0.5771312 
+## Iteration:  200 
+## Value is:  0.07398106 
+## Gradient is:  -0.1603189 -0.2532476 
+## Iteration:  300 
+## Value is:  0.02483024 
+## Gradient is:  -0.07679074 -0.1373911 
+## Iteration:  400 
+## Value is:  0.009619333 
+## Gradient is:  -0.04347242 -0.08254051 
+## Iteration:  500 
+## Value is:  0.003990697 
+## Gradient is:  -0.02652063 -0.05206227 
+## Iteration:  600 
+## Value is:  0.001719962 
+## Gradient is:  -0.01683905 -0.03373682 
+## Iteration:  700 
+## Value is:  0.0007584976 
+## Gradient is:  -0.01095017 -0.02221584 
+## Iteration:  800 
+## Value is:  0.0003393509 
+## Gradient is:  -0.007221781 -0.01477957 
+## Iteration:  900 
+## Value is:  0.0001532408 
+## Gradient is:  -0.004811743 -0.009894371 
+## Iteration:  1000 
+## Value is:  6.962555e-05 
+## Gradient is:  -0.003222887 -0.006653666
+</pre></div>
+</div>
+<p>After thousand iterations, we have reached a function value lower than
+0.0001. What is the corresponding <code class="docutils literal notranslate"><span class="pre">(x1,x2)</span></code> position?</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">x</span>
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>## torch_tensor
+##  0.9918
+##  0.9830
+## [ CPUFloatType{2} ][ requires_grad = TRUE ]
+</pre></div>
+</div>
+</section>
+</section>
+<section id="lab">
+<h2><span class="section-number">5.5. </span>Lab<a class="headerlink" href="#lab" title="Link to this heading">#</a></h2>
+<p>How to use <code class="docutils literal notranslate"><span class="pre">autograd</span></code> in <code class="docutils literal notranslate"><span class="pre">torch</span></code> to solve <em>β</em><sub>0</sub> and
+<em>β</em><sub>1</sub> for <em>y</em> = 1 + <em>x</em> + <em>e</em>, where <em>e</em> ~ normal(0,0.25)</p>
+<p>Starter code as below:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>set.seed(1)
+b0 &lt;- 1; b1 &lt;- 1; n &lt;- 200
+x &lt;- runif(n,0,2)
+y &lt;- b0 + b1*x + rnorm(n, sd=0.25)
+</pre></div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./book\torch"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="04-SGD.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">4. </span>Gradient Descent (GD)</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-compute-derivatives">5.1. Why compute derivatives?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#automatic-differentiation-example">5.2. Automatic differentiation example</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#automatic-differentiation-with-torch-autograd">5.3. Automatic differentiation with <code class="docutils literal notranslate"><span class="pre">torch</span></code> autograd</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#minimize-loss-function-with-autograd">5.4. Minimize loss function with <code class="docutils literal notranslate"><span class="pre">autograd</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#minimization-from-scratch">5.4.1. Minimization from scratch</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lab">5.5. Lab</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Yalin Yang
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
