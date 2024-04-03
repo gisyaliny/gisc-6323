@@ -17,8 +17,8 @@ parts:
       - file: book/torch/01-torch-installation
       - file: book/torch/02-tensorflow-installation
       - file: book/torch/03-Tensor
-  #     - file: book/python/04_working_with_lists
-  #     - file: book/python/05_if_statements
+      - file: book/torch/04-SGD
+      - file: book/torch/05-Autograd
   #     - file: book/python/06_dictionaries
   #     - file: book/python/07_user_input_while_loops
   #     - file: book/python/08_functions

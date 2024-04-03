@@ -1,4 +1,5 @@
-# EPPS6326 & GISC6323: Machine Learning for Socio-Economic and Georeferenced Data
+# EPPS6326 & GISC6323 
+## Machine Learning for Socio-Economic and Georeferenced Data
 
 This repo is for the _Machine Learning for Socio-Economic and Georeferenced Data_ course (EPPS6326 & GISC6323) that Dr. [Michael Tiefelsdorf](https://profiles.utdallas.edu/tiefelsdorf) and I teach at the University of Texas, Dallas.
 
