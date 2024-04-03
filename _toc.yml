@@ -1,0 +1,30 @@
+# Table of contents
+# Learn more at https://jupyterbook.org/customize/toc.html
+
+format: jb-book
+root: index
+
+parts:
+  # - caption: Preface
+  #   chapters:
+  #     - file: book/preface/instructor
+  #     - file: book/preface/syllabus
+  #     - file: book/preface/software
+  - caption: Deep Learning with R torch
+    numbered: true
+    maxdepth: 2
+    chapters:
+      - file: book/torch/01-torch-installation
+      - file: book/torch/02-tensorflow-installation
+  #     - file: book/python/03_introducing_lists
+  #     - file: book/python/04_working_with_lists
+  #     - file: book/python/05_if_statements
+  #     - file: book/python/06_dictionaries
+  #     - file: book/python/07_user_input_while_loops
+  #     - file: book/python/08_functions
+  #     - file: book/python/09_classes
+  #     - file: book/python/10_files_and_exceptions
+  # - caption: Appendix
+  #   chapters:
+  #     - file: book/gee/bibliography
+  #     - file: book/gee/issues
