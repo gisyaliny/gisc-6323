@@ -5,18 +5,18 @@ format: jb-book
 root: index
 
 parts:
-  # - caption: Preface
-  #   chapters:
-  #     - file: book/preface/instructor
-  #     - file: book/preface/syllabus
-  #     - file: book/preface/software
+  - caption: Introduction & Overview
+    chapters:
+      - file: book/Intro/author
+      - file: book/Intro/preface
+      # - file: book/preface/software
   - caption: Deep Learning with R torch
     numbered: true
     maxdepth: 2
     chapters:
       - file: book/torch/01-torch-installation
       - file: book/torch/02-tensorflow-installation
-  #     - file: book/python/03_introducing_lists
+      - file: book/torch/03-Tensor
   #     - file: book/python/04_working_with_lists
   #     - file: book/python/05_if_statements
   #     - file: book/python/06_dictionaries
