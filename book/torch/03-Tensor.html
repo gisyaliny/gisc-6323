@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>3. Tensor &#8212; Machine Learning for Socio-Economic and Georeferenced Data</title>
+    <title>10. Tensor &#8212; Machine Learning for Socio-Economic and Georeferenced Data</title>
   
   
   
@@ -62,8 +62,8 @@
     <link rel="icon" href="../../_static/fav.ico"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="4. Gradient Descent (GD)" href="04-SGD.html" />
-    <link rel="prev" title="2. Keras installation" href="02-tensorflow-installation.html" />
+    <link rel="next" title="11. Gradient Descent (GD)" href="04-SGD.html" />
+    <link rel="prev" title="9. Keras installation" href="02-tensorflow-installation.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -175,13 +175,31 @@
 <li class="toctree-l1"><a class="reference internal" href="../Intro/author.html">About the Author</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Intro/preface.html">Preface</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Deep Learning with R torch</span></p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Traditional statistics</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../tranditional/Chapter2-Statistical-Learning.html">1. Statistical Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tranditional/Chapter3-Linear-Regression.html">2. Regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tranditional/Chapter4-Classification.html">3. Classification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tranditional/Chapter5-Sampling.html">4. Sampling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tranditional/Chapter6-Model-Selection.html">5. Model Selection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tranditional/Chapter6-Dimention-Reduction.html">6. Dimension Reduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tranditional/Chapter7-non-linear-regression.html">7. Non-linear Regression</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Deep Learning Basic</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="01-torch-installation.html">1. <code class="docutils literal notranslate"><span class="pre">torch</span></code> Installation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="02-tensorflow-installation.html">2. <code class="docutils literal notranslate"><span class="pre">Keras</span></code> installation</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">3. Tensor</a></li>
-<li class="toctree-l1"><a class="reference internal" href="04-SGD.html">4. Gradient Descent (GD)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="05-Autograd.html">5. Autograd</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01-torch-installation.html">8. <code class="docutils literal notranslate"><span class="pre">torch</span></code> Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02-tensorflow-installation.html">9. <code class="docutils literal notranslate"><span class="pre">Keras</span></code> installation</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">10. Tensor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04-SGD.html">11. Gradient Descent (GD)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05-Autograd.html">12. Autograd</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Computer Vision</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../cv/Chapter10-CNN.html">13. Convolution Neural Network</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Natural Language Processing</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../nlp/Chapter10-NLP.html">14. Natural Language Processing</a></li>
 </ul>
 
     </div>
@@ -394,24 +412,24 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#whats-in-a-tensor">3.1. What’s in a tensor?</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-tensors">3.2. Creating tensors</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tensors-from-values">3.2.1. Tensors from values</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tensors-from-specifications">3.2.2. Tensors from specifications</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tensors-from-datasets">3.2.3. Tensors from datasets</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#whats-in-a-tensor">10.1. What’s in a tensor?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-tensors">10.2. Creating tensors</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tensors-from-values">10.2.1. Tensors from values</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tensors-from-specifications">10.2.2. Tensors from specifications</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tensors-from-datasets">10.2.3. Tensors from datasets</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#operations-on-tensors">3.3. Operations on tensors</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#summary-operations">3.3.1. Summary operations</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#operations-on-tensors">10.3. Operations on tensors</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#summary-operations">10.3.1. Summary operations</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#accessing-parts-of-a-tensor">3.4. Accessing parts of a tensor</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#indexing-and-slicing">3.4.1. Indexing and Slicing</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#advanced-query">3.4.2. Advanced query</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#accessing-parts-of-a-tensor">10.4. Accessing parts of a tensor</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#indexing-and-slicing">10.4.1. Indexing and Slicing</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#advanced-query">10.4.2. Advanced query</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reshaping-tensors">3.5. Reshaping tensors</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#broadcasting">3.6. Broadcasting</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reshaping-tensors">10.5. Reshaping tensors</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#broadcasting">10.6. Broadcasting</a></li>
 </ul>
             </nav>
         </div>
@@ -424,12 +442,12 @@ document.write(`
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="tensor">
-<h1><span class="section-number">3. </span>Tensor<a class="headerlink" href="#tensor" title="Link to this heading">#</a></h1>
+<h1><span class="section-number">10. </span>Tensor<a class="headerlink" href="#tensor" title="Link to this heading">#</a></h1>
 <ul class="simple">
 <li><p><a class="reference external" href="https://skeydan.github.io/Deep-Learning-and-Scientific-Computing-with-R-torch/tensors.html">Reference</a></p></li>
 </ul>
 <section id="whats-in-a-tensor">
-<h2><span class="section-number">3.1. </span>What’s in a tensor?<a class="headerlink" href="#whats-in-a-tensor" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">10.1. </span>What’s in a tensor?<a class="headerlink" href="#whats-in-a-tensor" title="Link to this heading">#</a></h2>
 <ol class="arabic simple">
 <li><p>Tensors are “just” <strong>multi-dimensional arrays</strong> optimized for fast
 computation</p></li>
@@ -510,7 +528,7 @@ one-element <code class="docutils literal notranslate"><span class="pre">matrix<
 </div>
 </section>
 <section id="creating-tensors">
-<h2><span class="section-number">3.2. </span>Creating tensors<a class="headerlink" href="#creating-tensors" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">10.2. </span>Creating tensors<a class="headerlink" href="#creating-tensors" title="Link to this heading">#</a></h2>
 <p>calling <code class="docutils literal notranslate"><span class="pre">torch_tensor()</span></code> and passing in an R value.</p>
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">t3</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">torch_tensor</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="m">2</span><span class="p">,</span><span class="m">3</span><span class="p">))</span>
 <span class="n">t3</span>
@@ -534,7 +552,7 @@ one-element <code class="docutils literal notranslate"><span class="pre">matrix<
 </pre></div>
 </div>
 <section id="tensors-from-values">
-<h3><span class="section-number">3.2.1. </span>Tensors from values<a class="headerlink" href="#tensors-from-values" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">10.2.1. </span>Tensors from values<a class="headerlink" href="#tensors-from-values" title="Link to this heading">#</a></h3>
 <p>Above, we passed in a one-element vector to torch_tensor(); we can pass
 in longer vectors just the same way</p>
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">torch_tensor</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="m">5</span><span class="p">)</span>
@@ -669,7 +687,7 @@ z-value, resulting in two big <code class="docutils literal notranslate"><span c
 </div>
 </section>
 <section id="tensors-from-specifications">
-<h3><span class="section-number">3.2.2. </span>Tensors from specifications<a class="headerlink" href="#tensors-from-specifications" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">10.2.2. </span>Tensors from specifications<a class="headerlink" href="#tensors-from-specifications" title="Link to this heading">#</a></h3>
 <p>There are two broad conditions when torch’s <code class="docutils literal notranslate"><span class="pre">bulk</span> <span class="pre">creation</span> <span class="pre">functions</span></code>
 will come in handy 1. when you don’t care about individual tensor
 values, but only about their distribution. 2. They follow some
@@ -748,7 +766,7 @@ algebra. 1. Here’s an identity matrix:</p>
 </div>
 </section>
 <section id="tensors-from-datasets">
-<h3><span class="section-number">3.2.3. </span>Tensors from datasets<a class="headerlink" href="#tensors-from-datasets" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">10.2.3. </span>Tensors from datasets<a class="headerlink" href="#tensors-from-datasets" title="Link to this heading">#</a></h3>
 <p>First, let’s try <code class="docutils literal notranslate"><span class="pre">JohnsonJohnson</span></code> that comes with base R. * It is a
 time series of quarterly earnings per Johnson &amp; Johnson share.</p>
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">JohnsonJohnson</span>
@@ -838,7 +856,7 @@ data just print the way they do because they are of class <code class="docutils 
 </section>
 </section>
 <section id="operations-on-tensors">
-<h2><span class="section-number">3.3. </span>Operations on tensors<a class="headerlink" href="#operations-on-tensors" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">10.3. </span>Operations on tensors<a class="headerlink" href="#operations-on-tensors" title="Link to this heading">#</a></h2>
 <p>We can perform all the usual mathematical operations on tensors.: <code class="docutils literal notranslate"><span class="pre">add</span></code>,
 <code class="docutils literal notranslate"><span class="pre">subtract</span></code>, <code class="docutils literal notranslate"><span class="pre">divide</span></code> …</p>
 <ul class="simple">
@@ -945,7 +963,7 @@ namely, <strong>scalar-multiply</strong> its arguments:</p>
 </pre></div>
 </div>
 <section id="summary-operations">
-<h3><span class="section-number">3.3.1. </span>Summary operations<a class="headerlink" href="#summary-operations" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">10.3.1. </span>Summary operations<a class="headerlink" href="#summary-operations" title="Link to this heading">#</a></h3>
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">m</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">outer</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="m">3</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="m">6</span><span class="p">)</span>
 <span class="n">m</span>
 </pre></div>
@@ -1084,9 +1102,9 @@ person, we’d do:</p>
 </section>
 </section>
 <section id="accessing-parts-of-a-tensor">
-<h2><span class="section-number">3.4. </span>Accessing parts of a tensor<a class="headerlink" href="#accessing-parts-of-a-tensor" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">10.4. </span>Accessing parts of a tensor<a class="headerlink" href="#accessing-parts-of-a-tensor" title="Link to this heading">#</a></h2>
 <section id="indexing-and-slicing">
-<h3><span class="section-number">3.4.1. </span>Indexing and Slicing<a class="headerlink" href="#indexing-and-slicing" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">10.4.1. </span>Indexing and Slicing<a class="headerlink" href="#indexing-and-slicing" title="Link to this heading">#</a></h3>
 <p>In the below example, we ask for the first column of a two-dimensional
 <code class="docutils literal notranslate"><span class="pre">tensor</span></code>; the result is one-dimensional, i.e., a <code class="docutils literal notranslate"><span class="pre">vector</span></code>:</p>
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">t</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">torch_tensor</span><span class="p">(</span><span class="nf">matrix</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="m">9</span><span class="p">,</span><span class="w"> </span><span class="n">ncol</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">3</span><span class="p">,</span><span class="w"> </span><span class="n">byrow</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">))</span>
@@ -1159,7 +1177,7 @@ additional considerations to be taken into account:</p>
 </div>
 </section>
 <section id="advanced-query">
-<h3><span class="section-number">3.4.2. </span>Advanced query<a class="headerlink" href="#advanced-query" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">10.4.2. </span>Advanced query<a class="headerlink" href="#advanced-query" title="Link to this heading">#</a></h3>
 <p>One of these extensions concerns accessing the last element in a
 <code class="docutils literal notranslate"><span class="pre">tensor</span></code>. Conveniently, in torch, we can use <code class="docutils literal notranslate"><span class="pre">-1</span></code> to accomplish that:</p>
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">t</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">torch_tensor</span><span class="p">(</span><span class="nf">matrix</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="m">4</span><span class="p">,</span><span class="w"> </span><span class="n">ncol</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="n">byrow</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">))</span>
@@ -1258,7 +1276,7 @@ higher-dimensional structure. The following</p>
 </section>
 </section>
 <section id="reshaping-tensors">
-<h2><span class="section-number">3.5. </span>Reshaping tensors<a class="headerlink" href="#reshaping-tensors" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">10.5. </span>Reshaping tensors<a class="headerlink" href="#reshaping-tensors" title="Link to this heading">#</a></h2>
 <p>We can modify a tensor’s shape, without juggling around its values,
 using the <code class="docutils literal notranslate"><span class="pre">view()</span></code> method</p>
 <p>Here is the initial tensor, a vector of length 24:</p>
@@ -1338,7 +1356,7 @@ instead of five. To get to the next column, we still just “jump over” a
 single element only:</p>
 </section>
 <section id="broadcasting">
-<h2><span class="section-number">3.6. </span>Broadcasting<a class="headerlink" href="#broadcasting" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">10.6. </span>Broadcasting<a class="headerlink" href="#broadcasting" title="Link to this heading">#</a></h2>
 <p>Multiply every element by a <code class="docutils literal notranslate"><span class="pre">scalar</span></code>. This works:</p>
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">t1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">torch_randn</span><span class="p">(</span><span class="m">3</span><span class="p">,</span><span class="w"> </span><span class="m">5</span><span class="p">)</span>
 <span class="n">t1</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="m">0.5</span>
@@ -1410,7 +1428,7 @@ single element only:</p>
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">2. </span><code class="docutils literal notranslate"><span class="pre">Keras</span></code> installation</p>
+        <p class="prev-next-title"><span class="section-number">9. </span><code class="docutils literal notranslate"><span class="pre">Keras</span></code> installation</p>
       </div>
     </a>
     <a class="right-next"
@@ -1418,7 +1436,7 @@ single element only:</p>
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">4. </span>Gradient Descent (GD)</p>
+        <p class="prev-next-title"><span class="section-number">11. </span>Gradient Descent (GD)</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -1438,24 +1456,24 @@ single element only:</p>
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#whats-in-a-tensor">3.1. What’s in a tensor?</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-tensors">3.2. Creating tensors</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tensors-from-values">3.2.1. Tensors from values</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tensors-from-specifications">3.2.2. Tensors from specifications</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tensors-from-datasets">3.2.3. Tensors from datasets</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#whats-in-a-tensor">10.1. What’s in a tensor?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-tensors">10.2. Creating tensors</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tensors-from-values">10.2.1. Tensors from values</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tensors-from-specifications">10.2.2. Tensors from specifications</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tensors-from-datasets">10.2.3. Tensors from datasets</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#operations-on-tensors">3.3. Operations on tensors</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#summary-operations">3.3.1. Summary operations</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#operations-on-tensors">10.3. Operations on tensors</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#summary-operations">10.3.1. Summary operations</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#accessing-parts-of-a-tensor">3.4. Accessing parts of a tensor</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#indexing-and-slicing">3.4.1. Indexing and Slicing</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#advanced-query">3.4.2. Advanced query</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#accessing-parts-of-a-tensor">10.4. Accessing parts of a tensor</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#indexing-and-slicing">10.4.1. Indexing and Slicing</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#advanced-query">10.4.2. Advanced query</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reshaping-tensors">3.5. Reshaping tensors</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#broadcasting">3.6. Broadcasting</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reshaping-tensors">10.5. Reshaping tensors</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#broadcasting">10.6. Broadcasting</a></li>
 </ul>
   </nav></div>
 

@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>1. torch Installation &#8212; Machine Learning for Socio-Economic and Georeferenced Data</title>
+    <title>8. torch Installation &#8212; Machine Learning for Socio-Economic and Georeferenced Data</title>
   
   
   
@@ -62,8 +62,8 @@
     <link rel="icon" href="../../_static/fav.ico"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="2. Keras installation" href="02-tensorflow-installation.html" />
-    <link rel="prev" title="Preface" href="../Intro/preface.html" />
+    <link rel="next" title="9. Keras installation" href="02-tensorflow-installation.html" />
+    <link rel="prev" title="7. Non-linear Regression" href="../tranditional/Chapter7-non-linear-regression.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -175,13 +175,31 @@
 <li class="toctree-l1"><a class="reference internal" href="../Intro/author.html">About the Author</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Intro/preface.html">Preface</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Deep Learning with R torch</span></p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Traditional statistics</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../tranditional/Chapter2-Statistical-Learning.html">1. Statistical Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tranditional/Chapter3-Linear-Regression.html">2. Regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tranditional/Chapter4-Classification.html">3. Classification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tranditional/Chapter5-Sampling.html">4. Sampling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tranditional/Chapter6-Model-Selection.html">5. Model Selection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tranditional/Chapter6-Dimention-Reduction.html">6. Dimension Reduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tranditional/Chapter7-non-linear-regression.html">7. Non-linear Regression</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Deep Learning Basic</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">1. <code class="docutils literal notranslate"><span class="pre">torch</span></code> Installation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="02-tensorflow-installation.html">2. <code class="docutils literal notranslate"><span class="pre">Keras</span></code> installation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="03-Tensor.html">3. Tensor</a></li>
-<li class="toctree-l1"><a class="reference internal" href="04-SGD.html">4. Gradient Descent (GD)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="05-Autograd.html">5. Autograd</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">8. <code class="docutils literal notranslate"><span class="pre">torch</span></code> Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02-tensorflow-installation.html">9. <code class="docutils literal notranslate"><span class="pre">Keras</span></code> installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03-Tensor.html">10. Tensor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04-SGD.html">11. Gradient Descent (GD)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05-Autograd.html">12. Autograd</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Computer Vision</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../cv/Chapter10-CNN.html">13. Convolution Neural Network</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Natural Language Processing</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../nlp/Chapter10-NLP.html">14. Natural Language Processing</a></li>
 </ul>
 
     </div>
@@ -443,9 +461,9 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#windows">1.1. Windows</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cpu">1.1.1. CPU</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gpu">1.1.2. GPU</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#windows">8.1. Windows</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cpu">8.1.1. CPU</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gpu">8.1.2. GPU</a></li>
 </ul>
 </li>
 </ul>
@@ -460,19 +478,19 @@ document.write(`
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="torch-installation">
-<h1><span class="section-number">1. </span><code class="docutils literal notranslate"><span class="pre">torch</span></code> Installation<a class="headerlink" href="#torch-installation" title="Link to this heading">#</a></h1>
+<h1><span class="section-number">8. </span><code class="docutils literal notranslate"><span class="pre">torch</span></code> Installation<a class="headerlink" href="#torch-installation" title="Link to this heading">#</a></h1>
 <ul class="simple">
 <li><p><a class="reference external" href="https://cran.r-project.org/web/packages/torch/vignettes/installation.html">Reference document</a></p></li>
 </ul>
 <section id="windows">
-<h2><span class="section-number">1.1. </span>Windows<a class="headerlink" href="#windows" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">8.1. </span>Windows<a class="headerlink" href="#windows" title="Link to this heading">#</a></h2>
 <section id="cpu">
-<h3><span class="section-number">1.1.1. </span>CPU<a class="headerlink" href="#cpu" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">8.1.1. </span>CPU<a class="headerlink" href="#cpu" title="Link to this heading">#</a></h3>
 <p>If you don’t have a GPU or want to install the CPU version of <code class="docutils literal notranslate"><span class="pre">torch</span></code>, you can install with:</p>
 <p><code class="docutils literal notranslate"><span class="pre">install.packages(&quot;torch&quot;)</span></code></p>
 </section>
 <section id="gpu">
-<h3><span class="section-number">1.1.2. </span>GPU<a class="headerlink" href="#gpu" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">8.1.2. </span>GPU<a class="headerlink" href="#gpu" title="Link to this heading">#</a></h3>
 <p>Since version 0.1.1 <code class="docutils literal notranslate"><span class="pre">torch</span></code> supports GPU installation on Windows. In order to use GPU’s with torch you need to:</p>
 <ol class="arabic">
 <li><p>Check your GPU is CUDA compatible or not, click <a class="reference external" href="https://developer.nvidia.com/cuda-gpus#compute">here</a></p></li>
@@ -545,12 +563,12 @@ document.write(`
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="../Intro/preface.html"
+       href="../tranditional/Chapter7-non-linear-regression.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Preface</p>
+        <p class="prev-next-title"><span class="section-number">7. </span>Non-linear Regression</p>
       </div>
     </a>
     <a class="right-next"
@@ -558,7 +576,7 @@ document.write(`
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">2. </span><code class="docutils literal notranslate"><span class="pre">Keras</span></code> installation</p>
+        <p class="prev-next-title"><span class="section-number">9. </span><code class="docutils literal notranslate"><span class="pre">Keras</span></code> installation</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -578,9 +596,9 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#windows">1.1. Windows</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cpu">1.1.1. CPU</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gpu">1.1.2. GPU</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#windows">8.1. Windows</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cpu">8.1.1. CPU</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gpu">8.1.2. GPU</a></li>
 </ul>
 </li>
 </ul>

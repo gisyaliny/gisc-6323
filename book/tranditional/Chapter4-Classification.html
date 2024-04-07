@@ -1,0 +1,1309 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>3. Classification &#8212; Machine Learning for Socio-Economic and Georeferenced Data</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b76e3c8a" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'book/tranditional/Chapter4-Classification';</script>
+    <link rel="canonical" href="https://gisyaliny.github.io/gisc-6323/book/tranditional/Chapter4-Classification.html" />
+    <link rel="icon" href="../../_static/fav.ico"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="4. Sampling" href="Chapter5-Sampling.html" />
+    <link rel="prev" title="2. Regression" href="Chapter3-Linear-Regression.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/logo.png" class="logo__image only-light" alt="Machine Learning for Socio-Economic and Georeferenced Data - Home"/>
+    <script>document.write(`<img src="../../_static/logo.png" class="logo__image only-dark" alt="Machine Learning for Socio-Economic and Georeferenced Data - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Introduction &amp; Overview</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Intro/author.html">About the Author</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Intro/preface.html">Preface</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Traditional statistics</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Chapter2-Statistical-Learning.html">1. Statistical Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Chapter3-Linear-Regression.html">2. Regression</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">3. Classification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Chapter5-Sampling.html">4. Sampling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Chapter6-Model-Selection.html">5. Model Selection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Chapter6-Dimention-Reduction.html">6. Dimension Reduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Chapter7-non-linear-regression.html">7. Non-linear Regression</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Deep Learning Basic</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../torch/01-torch-installation.html">8. <code class="docutils literal notranslate"><span class="pre">torch</span></code> Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../torch/02-tensorflow-installation.html">9. <code class="docutils literal notranslate"><span class="pre">Keras</span></code> installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../torch/03-Tensor.html">10. Tensor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../torch/04-SGD.html">11. Gradient Descent (GD)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../torch/05-Autograd.html">12. Autograd</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Computer Vision</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../cv/Chapter10-CNN.html">13. Convolution Neural Network</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Natural Language Processing</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../nlp/Chapter10-NLP.html">14. Natural Language Processing</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://mybinder.org/v2/gh/gisyaliny/gisc-6323/master?urlpath=tree/book/tranditional/Chapter4-Classification.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onBinder"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../../_static/images/logo_binder.svg">
+  </span>
+<span class="btn__text-container">Binder</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/gisyaliny/gisc-6323/blob/master/book/tranditional/Chapter4-Classification.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onColab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/gisyaliny/gisc-6323" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/gisyaliny/gisc-6323/edit/main/book/tranditional/Chapter4-Classification.ipynb" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/gisyaliny/gisc-6323/issues/new?title=Issue%20on%20page%20%2Fbook/tranditional/Chapter4-Classification.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/book/tranditional/Chapter4-Classification.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Classification</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-not-linear-regression">3.1. Why not Linear regression</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#logistic-regression">3.2. Logistic Regression</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-logistic-function">3.2.1. The logistic Function</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#estimate-parameters-maximum-likelihood">3.2.2. Estimate Parameters (Maximum Likelihood)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#making-predictions">3.2.3. Making Predictions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#script-example">3.2.4. Script Example</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multi-variate-logistic-regression">3.3. Multi-variate Logistic Regression</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#case-control-sampling-and-logistic-regression">3.3.1. Case-control sampling and logistic regression</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#diminishing-returns-in-unbalanced-binary-data">3.3.2. Diminishing returns in unbalanced binary data</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#discriminant-analysis">3.4. Discriminant Analysis</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#why-discriminant-analysis">3.4.1. Why Discriminant Analysis</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayes-theorem-for-classification">3.4.2. Bayes theorem for classification</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#linear-discriminant-analysis-with-one-predictor-p-1">3.4.3. Linear Discriminant Analysis with one predictor (<span class="math notranslate nohighlight">\(p=1\)</span>)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-for-decision-boundary-for-equal-prior-probability">3.4.4. Example for decision boundary for equal prior probability</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gaussian-discriminant-analysis-p-1">3.4.5. Gaussian Discriminant Analysis (<span class="math notranslate nohighlight">\(p&gt;1\)</span>)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#naive-bayes">3.5. Naive Bayes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#type-of-errors-and-roc">3.6. Type of Errors and ROC</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#roc">3.6.1. ROC</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generalized-linear-models">3.7. Generalized Linear Models</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">3.7.1. Examples</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#poisson-regression-model">3.7.2. Poisson Regression Model</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary-of-glm">3.8. Summary of GLM</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="classification">
+<h1><span class="section-number">3. </span>Classification<a class="headerlink" href="#classification" title="Link to this heading">#</a></h1>
+<ul class="simple">
+<li><p>Example: Credit Card Default</p></li>
+</ul>
+<p><img alt="image.png" src="../../_images/16.png" /></p>
+<section id="why-not-linear-regression">
+<h2><span class="section-number">3.1. </span>Why not Linear regression<a class="headerlink" href="#why-not-linear-regression" title="Link to this heading">#</a></h2>
+<p><img alt="image.png" src="../../_images/17.png" /></p>
+<ul class="simple">
+<li><p>In this case of a <strong>binary outcome</strong>, linear regression does a good job as a classifier, and is equivalent to <code class="docutils literal notranslate"><span class="pre">linear</span> <span class="pre">discriminant</span> <span class="pre">analysis</span></code>.</p>
+<ul>
+<li><p>For more than 2 outcome classes, regression will suggests an ordering (<span class="math notranslate nohighlight">\(3&gt;2&gt;1\)</span>), therefore can not use regression for multi-types classification.</p></li>
+</ul>
+</li>
+<li><p>However, <code class="docutils literal notranslate"><span class="pre">linear</span> <span class="pre">regression</span></code> might produce probabilities less than zero or bigger than one. <code class="docutils literal notranslate"><span class="pre">Logistic</span> <span class="pre">regression</span></code> is more appropriate.</p></li>
+</ul>
+<p><img alt="image.png" src="../../_images/18.png" /></p>
+</section>
+<section id="logistic-regression">
+<h2><span class="section-number">3.2. </span>Logistic Regression<a class="headerlink" href="#logistic-regression" title="Link to this heading">#</a></h2>
+<ul>
+<li><p><strong>Definition</strong>: <code class="docutils literal notranslate"><span class="pre">Logistic</span> <span class="pre">Regression</span></code> is a statistical method used for <code class="docutils literal notranslate"><span class="pre">binary</span> <span class="pre">classification</span></code>. It predicts the probability that a given instance belongs to a particular class. The core idea is to model the probability that a target variable <code class="docutils literal notranslate"><span class="pre">Y</span></code> is a particular value (<span class="math notranslate nohighlight">\(1\)</span> or <span class="math notranslate nohighlight">\(0\)</span>) given a set of independent variables <code class="docutils literal notranslate"><span class="pre">X</span></code>.</p>
+<div class="math notranslate nohighlight">
+\[
+  p(X)=\frac{e^{\beta_0+\beta_1 x}}{1+e^{\beta_0+\beta_1 x}}
+  \]</div>
+</li>
+<li><p>A bit of rearrangement gives * This monotone transformation is called the <code class="docutils literal notranslate"><span class="pre">log</span> <span class="pre">odds</span></code> or <code class="docutils literal notranslate"><span class="pre">logit</span></code> transformation of <span class="math notranslate nohighlight">\(p(X)\)</span>
+$<span class="math notranslate nohighlight">\(
+log(\frac{p(X)}{1-p(X)}=\beta_0+\beta_1 X)
+\)</span>$</p></li>
+</ul>
+<section id="the-logistic-function">
+<h3><span class="section-number">3.2.1. </span>The logistic Function<a class="headerlink" href="#the-logistic-function" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>The <code class="docutils literal notranslate"><span class="pre">logistic</span> <span class="pre">function</span></code>, also known as the <code class="docutils literal notranslate"><span class="pre">sigmoid</span></code> function, is an S-shaped curve that can take any real-valued number and map it into a value between <span class="math notranslate nohighlight">\(0\)</span> and <span class="math notranslate nohighlight">\(1\)</span>, but <strong>never exactly at those limits</strong>. Mathematically, it is represented as:
+$<span class="math notranslate nohighlight">\(
+\sigma(Z)=\frac{1}{1+e^{-z}}
+\)</span>$</p></li>
+<li><p>where <span class="math notranslate nohighlight">\(z\)</span> is a linear combination of the input features <span class="math notranslate nohighlight">\(X\)</span>, i.e., <span class="math notranslate nohighlight">\(z = β₀ + β₁X₁ + β₂X₂ + ... + βₙXₙ\)</span>, where <span class="math notranslate nohighlight">\(β₀, β₁, ..., βₙ\)</span> are the parameters of the model.</p></li>
+</ul>
+</section>
+<section id="estimate-parameters-maximum-likelihood">
+<h3><span class="section-number">3.2.2. </span>Estimate Parameters (Maximum Likelihood)<a class="headerlink" href="#estimate-parameters-maximum-likelihood" title="Link to this heading">#</a></h3>
+<div class="math notranslate nohighlight">
+\[
+l(\beta_0,\beta)=\prod_{i:y_i=1}p(x_i)\prod_{i:y_i=0}(1-p(x_i))
+\]</div>
+<ul class="simple">
+<li><p>The parameters <span class="math notranslate nohighlight">\(β₀, β₁, ..., βₙ\)</span> are estimated using the <code class="docutils literal notranslate"><span class="pre">Maximum</span> <span class="pre">Likelihood</span> <span class="pre">Estimation</span></code> (MLE).</p></li>
+<li><p>The idea is to find the set of parameters that maximize the likelihood of the observed data.</p></li>
+<li><p>We pick <span class="math notranslate nohighlight">\(\beta_0\)</span> and <span class="math notranslate nohighlight">\(\beta\)</span> to maximize the likelihood of observed data.</p></li>
+</ul>
+<p><img alt="image.png" src="../../_images/19.png" /></p>
+</section>
+<section id="making-predictions">
+<h3><span class="section-number">3.2.3. </span>Making Predictions<a class="headerlink" href="#making-predictions" title="Link to this heading">#</a></h3>
+<p><img alt="image.png" src="../../_images/20.png" /></p>
+</section>
+<section id="script-example">
+<h3><span class="section-number">3.2.4. </span>Script Example<a class="headerlink" href="#script-example" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LogisticRegression</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">accuracy_score</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;./Data/Heart.csv&quot;</span><span class="p">,</span><span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">data</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Age</th>
+      <th>Sex</th>
+      <th>ChestPain</th>
+      <th>RestBP</th>
+      <th>Chol</th>
+      <th>Fbs</th>
+      <th>RestECG</th>
+      <th>MaxHR</th>
+      <th>ExAng</th>
+      <th>Oldpeak</th>
+      <th>Slope</th>
+      <th>Ca</th>
+      <th>Thal</th>
+      <th>AHD</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1</th>
+      <td>63</td>
+      <td>1</td>
+      <td>typical</td>
+      <td>145</td>
+      <td>233</td>
+      <td>1</td>
+      <td>2</td>
+      <td>150</td>
+      <td>0</td>
+      <td>2.3</td>
+      <td>3</td>
+      <td>0.0</td>
+      <td>fixed</td>
+      <td>No</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>67</td>
+      <td>1</td>
+      <td>asymptomatic</td>
+      <td>160</td>
+      <td>286</td>
+      <td>0</td>
+      <td>2</td>
+      <td>108</td>
+      <td>1</td>
+      <td>1.5</td>
+      <td>2</td>
+      <td>3.0</td>
+      <td>normal</td>
+      <td>Yes</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>67</td>
+      <td>1</td>
+      <td>asymptomatic</td>
+      <td>120</td>
+      <td>229</td>
+      <td>0</td>
+      <td>2</td>
+      <td>129</td>
+      <td>1</td>
+      <td>2.6</td>
+      <td>2</td>
+      <td>2.0</td>
+      <td>reversable</td>
+      <td>Yes</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>37</td>
+      <td>1</td>
+      <td>nonanginal</td>
+      <td>130</td>
+      <td>250</td>
+      <td>0</td>
+      <td>0</td>
+      <td>187</td>
+      <td>0</td>
+      <td>3.5</td>
+      <td>3</td>
+      <td>0.0</td>
+      <td>normal</td>
+      <td>No</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>41</td>
+      <td>0</td>
+      <td>nontypical</td>
+      <td>130</td>
+      <td>204</td>
+      <td>0</td>
+      <td>2</td>
+      <td>172</td>
+      <td>0</td>
+      <td>1.4</td>
+      <td>1</td>
+      <td>0.0</td>
+      <td>normal</td>
+      <td>No</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s2">&quot;AHD&quot;</span><span class="p">,</span><span class="n">column</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Age&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: title={&#39;center&#39;: &#39;Age&#39;}, xlabel=&#39;AHD&#39;&gt;
+</pre></div>
+</div>
+<img alt="../../_images/f947542e84ed20758633e749a407e0fdd8fc31721769c35b3a936534228f3d0c.png" src="../../_images/f947542e84ed20758633e749a407e0fdd8fc31721769c35b3a936534228f3d0c.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X</span><span class="p">,</span><span class="n">y</span> <span class="o">=</span> <span class="n">data</span><span class="p">[[</span><span class="s2">&quot;Chol&quot;</span><span class="p">,</span><span class="s2">&quot;Age&quot;</span><span class="p">]],</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;AHD&quot;</span><span class="p">]</span>
+<span class="c1"># Splitting the dataset into training and testing sets</span>
+<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
+
+<span class="c1"># Creating a logistic regression model</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">()</span>
+
+<span class="c1"># Fitting the model</span>
+<span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+
+<span class="c1"># Making predictions</span>
+<span class="n">predictions</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+
+<span class="c1"># Evaluating the model</span>
+<span class="n">accuracy</span> <span class="o">=</span> <span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">predictions</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Accuracy:&quot;</span><span class="p">,</span> <span class="n">accuracy</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Accuracy: 0.4918032786885246
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create the scatter plot</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">scatterplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">&quot;Chol&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;Age&quot;</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s2">&quot;AHD&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/b1422e50476574331d57a62457cda86c111df4bad193fd99b52d2735dd70da1d.png" src="../../_images/b1422e50476574331d57a62457cda86c111df4bad193fd99b52d2735dd70da1d.png" />
+</div>
+</div>
+</section>
+</section>
+<section id="multi-variate-logistic-regression">
+<h2><span class="section-number">3.3. </span>Multi-variate Logistic Regression<a class="headerlink" href="#multi-variate-logistic-regression" title="Link to this heading">#</a></h2>
+<p><img alt="image.png" src="../../_images/21.png" /></p>
+<p><img alt="image.png" src="../../_images/22.png" /></p>
+<ul class="simple">
+<li><p>Equation <span class="math notranslate nohighlight">\(4.10\)</span> also called <code class="docutils literal notranslate"><span class="pre">Soft-MAX</span></code> function</p></li>
+</ul>
+<section id="case-control-sampling-and-logistic-regression">
+<h3><span class="section-number">3.3.1. </span>Case-control sampling and logistic regression<a class="headerlink" href="#case-control-sampling-and-logistic-regression" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>For example, in heart disease analysis, we have <span class="math notranslate nohighlight">\(160\)</span> cases, 302 controls <span class="math notranslate nohighlight">\(\to \tilde \pi = 0.35\)</span> are cases. Yet the prevalence of heart disease in this region is <span class="math notranslate nohighlight">\(\pi = 0.05\)</span> (<code class="docutils literal notranslate"><span class="pre">Prior</span> <span class="pre">Knowledge</span></code>)
+_ In this situation, <code class="docutils literal notranslate"><span class="pre">logistic</span> <span class="pre">regression</span></code> can estimate regression parameter <span class="math notranslate nohighlight">\(\beta_j\)</span> accurately (if the model is correct), but the intercept <span class="math notranslate nohighlight">\(\beta_0\)</span> is incorrect
+_ We can correct the intercept by following transformation
+$<span class="math notranslate nohighlight">\(
+\hat \beta_0^* = \hat \beta_0 + log \frac{\pi}{1-\pi}-log\frac{\tilde \pi}{1-\tilde \pi}
+\)</span>$</p></li>
+</ul>
+</section>
+<section id="diminishing-returns-in-unbalanced-binary-data">
+<h3><span class="section-number">3.3.2. </span>Diminishing returns in unbalanced binary data<a class="headerlink" href="#diminishing-returns-in-unbalanced-binary-data" title="Link to this heading">#</a></h3>
+<p><img alt="image.png" src="book/tranditional/attachment:image.png" /></p>
+<ul class="simple">
+<li><p><strong>Introduction</strong>: In the context of machine learning, particularly with <code class="docutils literal notranslate"><span class="pre">binary</span> <span class="pre">classification</span></code> tasks, the concept of <code class="docutils literal notranslate"><span class="pre">diminishing</span> <span class="pre">returns</span></code> often becomes significant in scenarios with <code class="docutils literal notranslate"><span class="pre">unbalanced</span> <span class="pre">datasets</span></code>.</p>
+<ul>
+<li><p>An unbalanced dataset is one in which the number of instances of one class (the majority class) significantly outnumbers the instances of the other class (the minority class).</p></li>
+<li><p>Adding more data points of the <code class="docutils literal notranslate"><span class="pre">majority</span> <span class="pre">class</span></code> to the training set <strong>results in progressively smaller improvements, or even a decline</strong>, in the model’s ability to predict the <code class="docutils literal notranslate"><span class="pre">minority</span> <span class="pre">class</span></code> accurately.</p></li>
+</ul>
+</li>
+<li><p><strong>Reasons for Diminishing Return</strong>s</p></li>
+</ul>
+<ol class="arabic simple">
+<li><p>Model Bias Towards Majority Class</p></li>
+<li><p>Inefficient Learning</p></li>
+</ol>
+<ul class="simple">
+<li><p><strong>Mitigation Strategies</strong></p></li>
+</ul>
+<ol class="arabic simple">
+<li><p>Resampling Techniques</p>
+<ul class="simple">
+<li><p>Balancing the dataset through <code class="docutils literal notranslate"><span class="pre">oversampling</span></code> the <code class="docutils literal notranslate"><span class="pre">minority</span></code> class or <code class="docutils literal notranslate"><span class="pre">undersampling</span></code> the <code class="docutils literal notranslate"><span class="pre">majority</span></code> class.</p></li>
+</ul>
+</li>
+<li><p>Cost-Sensitive Learning</p>
+<ul class="simple">
+<li><p>Adjusting the algorithm to <strong>penalize misclassifications</strong> from the <code class="docutils literal notranslate"><span class="pre">minority</span></code> class more heavily.</p></li>
+</ul>
+</li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">make_classification</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">classification_report</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Generate an unbalanced dataset</span>
+<span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">make_classification</span><span class="p">(</span><span class="n">n_classes</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">class_sep</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">weights</span><span class="o">=</span><span class="p">[</span><span class="mf">0.98</span><span class="p">,</span> <span class="mf">0.02</span><span class="p">],</span> 
+                           <span class="n">n_informative</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">n_redundant</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">flip_y</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">n_features</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> 
+                           <span class="n">n_clusters_per_class</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">n_samples</span><span class="o">=</span><span class="mi">100000</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+
+<span class="c1"># Split into training and testing sets</span>
+<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+
+<span class="c1"># Train a logistic regression model</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">()</span>
+<span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+
+<span class="c1"># Predict and evaluate the model</span>
+<span class="n">predictions</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">classification_report</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">predictions</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>              precision    recall  f1-score   support
+
+           0       0.99      1.00      1.00     29402
+           1       0.90      0.69      0.78       598
+
+    accuracy                           0.99     30000
+   macro avg       0.95      0.85      0.89     30000
+weighted avg       0.99      0.99      0.99     30000
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="discriminant-analysis">
+<h2><span class="section-number">3.4. </span>Discriminant Analysis<a class="headerlink" href="#discriminant-analysis" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Discriminant Analysis model the distribution of <span class="math notranslate nohighlight">\(X\)</span> in each of the classes separately, and then use <code class="docutils literal notranslate"><span class="pre">Bayes</span> <span class="pre">theorem</span></code> to flip things around and obtain <span class="math notranslate nohighlight">\(Pr(Y|X)\)</span></p>
+<ul>
+<li><p>If we assume normal (Gaussian) distributions for each features <span class="math notranslate nohighlight">\(X\)</span>, it lead to linear or quadratic discriminant analysis (<code class="docutils literal notranslate"><span class="pre">LDA</span></code> and <code class="docutils literal notranslate"><span class="pre">QDA</span></code>)</p></li>
+<li><p>When the predictor variables <span class="math notranslate nohighlight">\(X\)</span> are assumed to have the <strong>same</strong> <code class="docutils literal notranslate"><span class="pre">covariance</span> <span class="pre">matrix</span></code> across different classes but <strong>different</strong> <code class="docutils literal notranslate"><span class="pre">means</span></code>, the resulting discriminant function is <strong>linear</strong> with respect to the predictor variables.</p></li>
+<li><p><strong>Quadratic Discriminant Analysis</strong> (<code class="docutils literal notranslate"><span class="pre">QDA</span></code>): QDA does not assume the covariance to be identical across classes. Hence, it uses the <strong>class-specific</strong> <code class="docutils literal notranslate"><span class="pre">covariance</span> <span class="pre">matrix</span></code>.</p>
+<ul>
+<li><p>offering more flexibility than LDA at the cost of increased computational complexity.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<section id="why-discriminant-analysis">
+<h3><span class="section-number">3.4.1. </span>Why Discriminant Analysis<a class="headerlink" href="#why-discriminant-analysis" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>When the classes are well-separated, the logistic regression’s parameter are surprisingly unstable.</p>
+<ul>
+<li><p>When classes are <strong>perfectly or nearly perfectly separated</strong> by a linear decision boundary, the <code class="docutils literal notranslate"><span class="pre">logistic</span> <span class="pre">regression</span></code> algorithm will <strong>push the coefficients towards infinity</strong> in an attempt to achieve perfect separation.</p></li>
+<li><p>If <span class="math notranslate nohighlight">\(n\)</span> (sample size) is small and distribution of the predictors <span class="math notranslate nohighlight">\(X\)</span> is approximately normal,linear discriminant model is more stable</p></li>
+<li><p>Linear discriminant analysis is popular when we have than 2 response classes.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="bayes-theorem-for-classification">
+<h3><span class="section-number">3.4.2. </span>Bayes theorem for classification<a class="headerlink" href="#bayes-theorem-for-classification" title="Link to this heading">#</a></h3>
+<div class="math notranslate nohighlight">
+\[
+Pr(Y=k|X=x) = \frac{Pr(X=x|Y=k)*Pr(Y=k)}{Pr(X=x)}
+\]</div>
+<ul class="simple">
+<li><p>We write slightly different discriminant analysis since we are dealing with continuous variables
+_ <span class="math notranslate nohighlight">\(f_k(x) = Pr(X=x|Y=k)\)</span> is the <code class="docutils literal notranslate"><span class="pre">density</span></code> for <span class="math notranslate nohighlight">\(X\)</span> in class <span class="math notranslate nohighlight">\(k\)</span>.
+_ <code class="docutils literal notranslate"><span class="pre">LDA</span></code> and <code class="docutils literal notranslate"><span class="pre">QDA</span></code> assumes it’s a normal distribution * <span class="math notranslate nohighlight">\(\pi_k=Pr(Y=k)\)</span> is the marginal or <code class="docutils literal notranslate"><span class="pre">prior</span></code> probability for class <span class="math notranslate nohighlight">\(k\)</span>
+$<span class="math notranslate nohighlight">\(
+Pr(Y=k|X=x) = \frac{\pi_k f_k(x))}{\sum_{l=1}^{K}\pi_l f_l(x)}
+\)</span>$</p></li>
+</ul>
+<p><img alt="image.png" src="../../_images/23.png" /></p>
+</section>
+<section id="linear-discriminant-analysis-with-one-predictor-p-1">
+<h3><span class="section-number">3.4.3. </span>Linear Discriminant Analysis with one predictor (<span class="math notranslate nohighlight">\(p=1\)</span>)<a class="headerlink" href="#linear-discriminant-analysis-with-one-predictor-p-1" title="Link to this heading">#</a></h3>
+<ul>
+<li><p>The Gaussian density has the form
+_ <span class="math notranslate nohighlight">\(\mu_k\)</span> is the mean, and <span class="math notranslate nohighlight">\(\sigma_k^2\)</span> is the variance for class <span class="math notranslate nohighlight">\(k\)</span>
+_ We assume <span class="math notranslate nohighlight">\(\sigma_k=\sigma\)</span> for every class</p>
+<div class="math notranslate nohighlight">
+\[
+  f_k(x)=\frac{1}{\sqrt{2\pi}\sigma_k}e^{-0.5(\frac{x-\mu_k}{\sigma_k})^2}
+  \]</div>
+</li>
+<li><p>Plugging into Bayes formula, we get the expression for <span class="math notranslate nohighlight">\(p_k(x)=Pr(Y=k|X=x)\)</span>
+$<span class="math notranslate nohighlight">\(
+p_k(x) = \frac{\pi_k \frac{1}{\sqrt{2\pi}\sigma_k}e^{-0.5(\frac{x-\mu_k}{\sigma_k})^2}}{\sum_{l=1}^{K}\pi_l \frac{1}{\sqrt{2\pi}\sigma_k}e^{-0.5(\frac{x-\mu_l}{\sigma_l})^2}}
+\)</span>$</p></li>
+</ul>
+<ol class="arabic simple">
+<li><p>Take the logarithm of both sides:
+$<span class="math notranslate nohighlight">\(
+log(p_k(x)) = log(\pi_k \frac{1}{\sqrt{2\pi}\sigma_k}e^{-0.5(\frac{x-\mu_k}{\sigma_k})^2}) - log(\sum_{l=1}^{K}\pi_l \frac{1}{\sqrt{2\pi}\sigma_k}e^{-0.5(\frac{x-\mu_l}{\sigma_l})^2})
+\)</span>$</p></li>
+<li><p>Using the properties of logarithms, this can be simplified to
+$<span class="math notranslate nohighlight">\(
+log(p_k(x)) = log(\pi_k) - log(\sqrt{2\pi}\sigma_k) - 0.5(\frac{x-\mu_k}{\sigma_k})^2 - log(\sum_{l=1}^{K}\pi_l \frac{1}{\sqrt{2\pi}\sigma_k}e^{-0.5(\frac{x-\mu_l}{\sigma_l})^2})
+\)</span>$</p></li>
+<li><p>Simplifying further:
+$<span class="math notranslate nohighlight">\(
+log(p_k(x)) = log(\pi_k) - \frac{1}{2}log(2\pi)-log(\sigma_k) - \frac{1}{2\sigma_k^2}(x-\mu_k)^2- log(\sum_{l=1}^{K}\pi_l \frac{1}{\sqrt{2\pi}\sigma_k}e^{-0.5(\frac{x-\mu_l}{\sigma_l})^2})
+\)</span>$</p></li>
+<li><p>Assuming that the variances <span class="math notranslate nohighlight">\(\sigma_k^2\)</span> are equal across all classes, and recognizing that the denominator is a constant with respect to class <span class="math notranslate nohighlight">\(k\)</span>, we can denote as <span class="math notranslate nohighlight">\(C\)</span>. also, <span class="math notranslate nohighlight">\(\frac{1}{2}log(2\pi)\)</span> is also a constant respect to <span class="math notranslate nohighlight">\(k\)</span>
+$<span class="math notranslate nohighlight">\(
+log(p_k(x)) =  log(\pi_k) - log(\sigma) - \frac{1}{2\sigma_k^2}(x-\mu_k)^2 +C
+\)</span>$</p></li>
+<li><p>Put <span class="math notranslate nohighlight">\(log(\sigma)\)</span> into <span class="math notranslate nohighlight">\(C\)</span>, and expand <span class="math notranslate nohighlight">\(\frac{1}{2\sigma_k^2}(x-\mu_k)^2 \to \frac{1}{2\sigma_k^2} (x^2-2x\mu_k+\\mu_k^2)\)</span>, where <span class="math notranslate nohighlight">\(x^2\)</span> is a constant to <span class="math notranslate nohighlight">\(k\)</span>
+$<span class="math notranslate nohighlight">\(
+log(p_k(x)) =  x*\frac{\mu_k}{\sigma^2}- \frac{\mu_k^2}{2 \sigma^2} + log(\pi_k) + C
+\)</span>$</p></li>
+<li><p>throw <span class="math notranslate nohighlight">\(C\)</span> and maximization <span class="math notranslate nohighlight">\(\delta_k(x) = log(p_k(x))  - C\)</span>
+$<span class="math notranslate nohighlight">\(
+\delta_k(x) = x*\frac{\mu_k}{\sigma^2} - \frac{\mu_k^2}{2 \sigma^2} + log(\pi_k)
+\)</span>$</p></li>
+</ol>
+</section>
+<section id="example-for-decision-boundary-for-equal-prior-probability">
+<h3><span class="section-number">3.4.4. </span>Example for decision boundary for equal prior probability<a class="headerlink" href="#example-for-decision-boundary-for-equal-prior-probability" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>We assume we have 2 response, and the prior probability is equal, now we try to find the decision boundary</p></li>
+</ul>
+<ol class="arabic simple">
+<li><p>Set <span class="math notranslate nohighlight">\(\delta_1(x) = \delta_2(x)\)</span>
+$<span class="math notranslate nohighlight">\(
+ x*\frac{\mu_1}{\sigma^2} - \frac{\mu_1^2}{2 \sigma^2} + log(\pi_1) =  x*\frac{\mu_2}{\sigma^2} - \frac{\mu_2^2}{2 \sigma^2} + log(\pi_2)
+\)</span>$</p></li>
+<li><p>Since we assume <span class="math notranslate nohighlight">\(\pi_1 = \pi_2\)</span> , we can cancel them out
+$<span class="math notranslate nohighlight">\(
+ x*\frac{\mu_1}{\sigma^2} - \frac{\mu_1^2}{2 \sigma^2} =  x*\frac{\mu_2}{\sigma^2} - \frac{\mu_2^2}{2 \sigma^2}
+\)</span>$</p></li>
+<li><p>Re-format
+$<span class="math notranslate nohighlight">\(
+x = \frac{\mu_1^2-\mu_2^2}{2 \sigma^2} * \frac{\sigma^2}{\mu_1-\mu_2} \to x=\frac{\mu_1+\mu_2}{2}
+\)</span>$
+This is the midpoint between the means of the two classes. Since the prior probabilities are equal and the variances are assumed to be equal in LDA, the decision boundary is simply the average of the means of the two classes.</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.discriminant_analysis</span> <span class="kn">import</span> <span class="n">LinearDiscriminantAnalysis</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">data</span><span class="p">[[</span><span class="s2">&quot;Chol&quot;</span><span class="p">,</span> <span class="s2">&quot;Age&quot;</span><span class="p">]],</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;AHD&quot;</span><span class="p">]</span>
+
+<span class="c1"># Split into training and testing sets</span>
+<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+
+<span class="c1"># Creating a linear discriminant analysis model</span>
+<span class="n">lda_model</span> <span class="o">=</span> <span class="n">LinearDiscriminantAnalysis</span><span class="p">()</span>
+
+<span class="c1"># Fitting the LDA model</span>
+<span class="n">lda_model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+
+<span class="c1"># Making predictions with LDA</span>
+<span class="n">lda_predictions</span> <span class="o">=</span> <span class="n">lda_model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+
+<span class="c1"># Evaluating the LDA model</span>
+<span class="n">lda_accuracy</span> <span class="o">=</span> <span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">lda_predictions</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;LDA Accuracy:&quot;</span><span class="p">,</span> <span class="n">lda_accuracy</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>LDA Accuracy: 0.6043956043956044
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="gaussian-discriminant-analysis-p-1">
+<h3><span class="section-number">3.4.5. </span>Gaussian Discriminant Analysis (<span class="math notranslate nohighlight">\(p&gt;1\)</span>)<a class="headerlink" href="#gaussian-discriminant-analysis-p-1" title="Link to this heading">#</a></h3>
+<p><img alt="image.png" src="../../_images/24.png" /></p>
+<div class="math notranslate nohighlight">
+\[
+\delta_k(x)=x^T\sum ^{-1}\mu_k-\frac{1}{2}\mu_k^T\sum ^{-1}\mu_k+log\pi_k
+\]</div>
+<p><img alt="image.png" src="../../_images/25.png" /></p>
+<ul class="simple">
+<li><p>Difference Between Them</p>
+<ul>
+<li><p><strong>Bayes Decision Boundary</strong>:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">Minimal</span> <span class="pre">Assumptions</span></code>: The Bayes decision boundary doesn’t make any specific assumptions about the distribution of data.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Optimal</span> <span class="pre">Boundary</span></code>: It is the theoretical optimal decision boundary that minimizes the probability of misclassification.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Flexibility</span></code>: The Bayes boundary can be nonlinear if the underlying class distributions are complex or if the classes have different covariance matrices.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Complexity</span></code>: For complex distributions, finding the exact Bayes boundary can be computationally intensive or analytically intractable.</p></li>
+</ul>
+</li>
+<li><p><strong>LDA Decision Boundary</strong></p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">Specific</span> <span class="pre">Assumptions</span></code>: LDA assumes the data from each class is drawn from a Gaussian distribution with a different mean but same covariance.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Linearity</span></code>: The LDA boundary is always linear, which may not be optimal if the true Bayes boundary is nonlinear.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><img alt="image.png" src="../../_images/26.png" /></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Compute the Fisher&#39;s linear discriminant (This is essentially the weights of the LDA model)</span>
+<span class="n">fishers_ld</span> <span class="o">=</span> <span class="n">lda_model</span><span class="o">.</span><span class="n">coef_</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="c1"># Normalize the Fisher&#39;s Linear Discriminant</span>
+<span class="n">fishers_ld</span> <span class="o">/=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">fishers_ld</span><span class="p">)</span>
+
+<span class="c1"># We need to project our test data onto the discriminant to plot them</span>
+<span class="n">lda_projection</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">fishers_ld</span><span class="p">)</span>
+
+<span class="c1"># We can create a simple function to separate the projections based on their class labels</span>
+<span class="k">def</span> <span class="nf">project_by_class</span><span class="p">(</span><span class="n">projections</span><span class="p">,</span> <span class="n">labels</span><span class="p">,</span> <span class="n">class_label</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">projections</span><span class="p">[</span><span class="n">labels</span> <span class="o">==</span> <span class="n">class_label</span><span class="p">]</span>
+
+<span class="c1"># Separate the projections</span>
+<span class="n">proj_class_0</span> <span class="o">=</span> <span class="n">project_by_class</span><span class="p">(</span><span class="n">lda_projection</span><span class="p">,</span> <span class="n">y_test</span><span class="p">,</span> <span class="n">lda_model</span><span class="o">.</span><span class="n">classes_</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">proj_class_1</span> <span class="o">=</span> <span class="n">project_by_class</span><span class="p">(</span><span class="n">lda_projection</span><span class="p">,</span> <span class="n">y_test</span><span class="p">,</span> <span class="n">lda_model</span><span class="o">.</span><span class="n">classes_</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+
+<span class="c1"># Plot the projections</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">proj_class_0</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">lda_model</span><span class="o">.</span><span class="n">classes_</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">proj_class_1</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">lda_model</span><span class="o">.</span><span class="n">classes_</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+
+<span class="c1"># Add a line for the decision boundary</span>
+<span class="c1"># This is where the discriminant function would be zero</span>
+<span class="n">boundary</span> <span class="o">=</span> <span class="o">-</span><span class="n">lda_model</span><span class="o">.</span><span class="n">intercept_</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">/</span> <span class="n">fishers_ld</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">boundary</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Decision Boundary&#39;</span><span class="p">)</span>
+
+<span class="c1"># Add some labels and a legend</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Value on Discriminant&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Frequency&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Projection onto Fisher</span><span class="se">\&#39;</span><span class="s1">s Linear Discriminant&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+
+<span class="c1"># Show the plot</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/44043b3789c16e7da1cfe448568c73dcc2c4917e0fd4125567db8ed02a4f3e84.png" src="../../_images/44043b3789c16e7da1cfe448568c73dcc2c4917e0fd4125567db8ed02a4f3e84.png" />
+</div>
+</div>
+</section>
+</section>
+<section id="naive-bayes">
+<h2><span class="section-number">3.5. </span>Naive Bayes<a class="headerlink" href="#naive-bayes" title="Link to this heading">#</a></h2>
+<div class="math notranslate nohighlight">
+\[
+Pr(Y=k|X=x) = \frac{\pi_k f_k(x))}{\sum_{l=1}^{K}\pi_l f_l(x)}
+\]</div>
+<ol class="arabic simple">
+<li><p>With <span class="math notranslate nohighlight">\(f_k(x) = \prod_{j=1}^p f_{jk}(x|x_j)\)</span> (conditional independence model) in each class, we get <code class="docutils literal notranslate"><span class="pre">naive</span> <span class="pre">Bayes</span></code></p></li>
+</ol>
+</section>
+<section id="type-of-errors-and-roc">
+<h2><span class="section-number">3.6. </span>Type of Errors and ROC<a class="headerlink" href="#type-of-errors-and-roc" title="Link to this heading">#</a></h2>
+<p><img alt="image.png" src="../../_images/27.png" /></p>
+<p><img alt="image-2.png" src="book/tranditional/attachment:image-2.png" /></p>
+<section id="roc">
+<h3><span class="section-number">3.6.1. </span>ROC<a class="headerlink" href="#roc" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.youtube.com/watch?v=4jRBRDbJemM&amp;amp;ab_channel=StatQuestwithJoshStarmer">Material</a></p></li>
+<li><p><strong>Definition</strong>: <code class="docutils literal notranslate"><span class="pre">Receiver</span> <span class="pre">Operating</span> <span class="pre">Characteristic</span> <span class="pre">(ROC)</span></code> curve and Area Under the <code class="docutils literal notranslate"><span class="pre">Receiver</span> <span class="pre">Operating</span> <span class="pre">Characteristic</span> <span class="pre">Curve</span> <span class="pre">(AUC)</span> </code>is a statistical metric used to evaluate the performance of <strong>binary classifiers</strong> at various threshold settings.</p></li>
+</ul>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">AUC</span></code> values ranging from 0.5 to 1, higher value means better performance</p></li>
+<li><p>For <strong>“positive-matters” cases, we can lower the threshold</strong> to get more “false positive” case but identify more positive cases. * Infected with Ebola
+$<span class="math notranslate nohighlight">\(
+y_{axis} = True Positive Rate = Sensitivity = \frac{True Positives}{True Positives+False Negatives}
+\)</span><span class="math notranslate nohighlight">\(
+\)</span><span class="math notranslate nohighlight">\(
+x_{axis} = False Positive Rate = 1 - Specificity = \frac{False Positives}{False Positives+True Negatives}
+\)</span>$</p></li>
+<li><p>f there were <strong>lots of negative instance</strong>, use <code class="docutils literal notranslate"><span class="pre">Precision</span></code> might be more useful than False Positive Rate</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Precision</span></code> does not include the number of <code class="docutils literal notranslate"><span class="pre">True</span> <span class="pre">Negatives</span></code> in its calculation, and is <strong>not effected by the imbalance</strong>.</p></li>
+</ul>
+</li>
+</ol>
+<div class="math notranslate nohighlight">
+\[
+Precision = \frac{True Positives}{True Positives+False Positives }
+\]</div>
+<p><img alt="image.png" src="../../_images/28.png" /></p>
+</section>
+</section>
+<section id="generalized-linear-models">
+<h2><span class="section-number">3.7. </span>Generalized Linear Models<a class="headerlink" href="#generalized-linear-models" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Logistic</span> <span class="pre">regression</span></code> is the counterpart for <code class="docutils literal notranslate"><span class="pre">binary</span> <span class="pre">response</span></code>, but there’re other response types exist, such as <code class="docutils literal notranslate"><span class="pre">non-negative</span></code> responses, <code class="docutils literal notranslate"><span class="pre">skewed</span> <span class="pre">distributions</span></code>, and more.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Generalized</span> <span class="pre">linear</span> <span class="pre">models</span></code> provide a unified framework for dealing with these response types</p></li>
+</ul>
+<section id="examples">
+<h3><span class="section-number">3.7.1. </span>Examples<a class="headerlink" href="#examples" title="Link to this heading">#</a></h3>
+<p><img alt="image.png" src="book/tranditional/attachment:image.png" />
+<img alt="image-2.png" src="book/tranditional/attachment:image-2.png" /></p>
+</section>
+<section id="poisson-regression-model">
+<h3><span class="section-number">3.7.2. </span>Poisson Regression Model<a class="headerlink" href="#poisson-regression-model" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Poisson distribution is useful for modeling counts * for <span class="math notranslate nohighlight">\(k = 0,1,2,... \)</span> and <span class="math notranslate nohighlight">\(\lambda = E(Y)=Var(Y)\)</span>
+$<span class="math notranslate nohighlight">\(
+Pr(Y=k) = \frac{e^{-\lambda}\lambda ^k}{k!}
+\)</span>$</p></li>
+</ul>
+<ol class="arabic simple">
+<li><p>With covariates, we model
+$<span class="math notranslate nohighlight">\(
+log(\lambda(X_1,...,X_p)) = \beta_0 + \beta_1 X_1 + ... + \beta_p X_p
+\)</span><span class="math notranslate nohighlight">\(
+or equivalently
+\)</span><span class="math notranslate nohighlight">\(
+\lambda(X_1,...,X_p) = e^{\beta_0 + \beta_1 X_1 + ... + \beta_p X_p}
+\)</span>$
+<img alt="image.png" src="book/tranditional/attachment:image.png" /></p></li>
+</ol>
+</section>
+</section>
+<section id="summary-of-glm">
+<h2><span class="section-number">3.8. </span>Summary of GLM<a class="headerlink" href="#summary-of-glm" title="Link to this heading">#</a></h2>
+<p><img alt="image.png" src="book/tranditional/attachment:image.png" /></p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./book\tranditional"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="Chapter3-Linear-Regression.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">2. </span>Regression</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="Chapter5-Sampling.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">4. </span>Sampling</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-not-linear-regression">3.1. Why not Linear regression</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#logistic-regression">3.2. Logistic Regression</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-logistic-function">3.2.1. The logistic Function</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#estimate-parameters-maximum-likelihood">3.2.2. Estimate Parameters (Maximum Likelihood)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#making-predictions">3.2.3. Making Predictions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#script-example">3.2.4. Script Example</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multi-variate-logistic-regression">3.3. Multi-variate Logistic Regression</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#case-control-sampling-and-logistic-regression">3.3.1. Case-control sampling and logistic regression</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#diminishing-returns-in-unbalanced-binary-data">3.3.2. Diminishing returns in unbalanced binary data</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#discriminant-analysis">3.4. Discriminant Analysis</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#why-discriminant-analysis">3.4.1. Why Discriminant Analysis</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayes-theorem-for-classification">3.4.2. Bayes theorem for classification</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#linear-discriminant-analysis-with-one-predictor-p-1">3.4.3. Linear Discriminant Analysis with one predictor (<span class="math notranslate nohighlight">\(p=1\)</span>)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-for-decision-boundary-for-equal-prior-probability">3.4.4. Example for decision boundary for equal prior probability</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gaussian-discriminant-analysis-p-1">3.4.5. Gaussian Discriminant Analysis (<span class="math notranslate nohighlight">\(p&gt;1\)</span>)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#naive-bayes">3.5. Naive Bayes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#type-of-errors-and-roc">3.6. Type of Errors and ROC</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#roc">3.6.1. ROC</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generalized-linear-models">3.7. Generalized Linear Models</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">3.7.1. Examples</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#poisson-regression-model">3.7.2. Poisson Regression Model</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary-of-glm">3.8. Summary of GLM</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Yalin Yang
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

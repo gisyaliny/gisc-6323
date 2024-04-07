@@ -1,0 +1,894 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>2. Regression &#8212; Machine Learning for Socio-Economic and Georeferenced Data</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b76e3c8a" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'book/tranditional/Chapter3-Linear-Regression';</script>
+    <link rel="canonical" href="https://gisyaliny.github.io/gisc-6323/book/tranditional/Chapter3-Linear-Regression.html" />
+    <link rel="icon" href="../../_static/fav.ico"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="3. Classification" href="Chapter4-Classification.html" />
+    <link rel="prev" title="1. Statistical Learning" href="Chapter2-Statistical-Learning.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/logo.png" class="logo__image only-light" alt="Machine Learning for Socio-Economic and Georeferenced Data - Home"/>
+    <script>document.write(`<img src="../../_static/logo.png" class="logo__image only-dark" alt="Machine Learning for Socio-Economic and Georeferenced Data - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Introduction &amp; Overview</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Intro/author.html">About the Author</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Intro/preface.html">Preface</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Traditional statistics</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Chapter2-Statistical-Learning.html">1. Statistical Learning</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">2. Regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Chapter4-Classification.html">3. Classification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Chapter5-Sampling.html">4. Sampling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Chapter6-Model-Selection.html">5. Model Selection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Chapter6-Dimention-Reduction.html">6. Dimension Reduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Chapter7-non-linear-regression.html">7. Non-linear Regression</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Deep Learning Basic</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../torch/01-torch-installation.html">8. <code class="docutils literal notranslate"><span class="pre">torch</span></code> Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../torch/02-tensorflow-installation.html">9. <code class="docutils literal notranslate"><span class="pre">Keras</span></code> installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../torch/03-Tensor.html">10. Tensor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../torch/04-SGD.html">11. Gradient Descent (GD)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../torch/05-Autograd.html">12. Autograd</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Computer Vision</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../cv/Chapter10-CNN.html">13. Convolution Neural Network</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Natural Language Processing</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../nlp/Chapter10-NLP.html">14. Natural Language Processing</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://mybinder.org/v2/gh/gisyaliny/gisc-6323/master?urlpath=tree/book/tranditional/Chapter3-Linear-Regression.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onBinder"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../../_static/images/logo_binder.svg">
+  </span>
+<span class="btn__text-container">Binder</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/gisyaliny/gisc-6323/blob/master/book/tranditional/Chapter3-Linear-Regression.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onColab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/gisyaliny/gisc-6323" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/gisyaliny/gisc-6323/edit/main/book/tranditional/Chapter3-Linear-Regression.ipynb" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/gisyaliny/gisc-6323/issues/new?title=Issue%20on%20page%20%2Fbook/tranditional/Chapter3-Linear-Regression.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/book/tranditional/Chapter3-Linear-Regression.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Regression</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simple-linear-regression">2.1. Simple Linear Regression</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#find-best-estimator-of-beta-1">2.1.1. Find Best estimator of <span class="math notranslate nohighlight">\(\beta_1\)</span></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ordinary-least-squares">2.1.1.1. Ordinary Least Squares</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#assessing-the-accuracy-of-coefficient-estimates">2.1.2. Assessing the Accuracy of Coefficient Estimates</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hypothesis-testing">2.1.3. Hypothesis Testing</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#assessing-the-overall-accuracy-of-the-model">2.1.4. Assessing the Overall Accuracy of the Model</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#maximum-likelihood-estimation">2.1.5. Maximum likelihood estimation</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multiple-linear-regression">2.2. Multiple Linear Regression</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#important-question-hypothesis-testing">2.2.1. Important Question (Hypothesis testing)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#polynomial-regression-non-linear-effects">2.2.2. Polynomial regression (non-linear effects)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interesting-quotes-by-famous-statisticians">2.3. Interesting Quotes by famous Statisticians</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="regression">
+<h1><span class="section-number">2. </span>Regression<a class="headerlink" href="#regression" title="Link to this heading">#</a></h1>
+<section id="simple-linear-regression">
+<h2><span class="section-number">2.1. </span>Simple Linear Regression<a class="headerlink" href="#simple-linear-regression" title="Link to this heading">#</a></h2>
+<p><span class="math notranslate nohighlight">\(Y=\beta_0+\beta_1 x + e\)</span></p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(Y\)</span> represents the dependent variable or the variable we are trying to predict or explain.</p></li>
+<li><p><span class="math notranslate nohighlight">\(x\)</span> represents the independent variable or the predictor variable.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\beta_0\)</span> is the intercept of the regression line, which is the predicted value of <span class="math notranslate nohighlight">\(Y\)</span> when <span class="math notranslate nohighlight">\(x\)</span> is zero.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\beta_1\)</span> is the slope of the regression line, representing the average change in <span class="math notranslate nohighlight">\(Y\)</span> for a one-unit change in <span class="math notranslate nohighlight">\(x\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(e\)</span> stands for the error term (also known as the residual), which is the difference between the observed values and the values predicted by the model.</p></li>
+</ul>
+<p><img alt="image.png" src="../../_images/052.png" /></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import necessary libraries</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LinearRegression</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Generate some random data for demonstration</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="c1"># Seed for reproducibility</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="c1"># 100 random numbers for independent variable</span>
+<span class="n">y</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">+</span> <span class="mi">3</span> <span class="o">*</span> <span class="n">x</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="c1"># Dependent variable with some noise</span>
+
+<span class="c1"># Create a linear regression model</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">()</span>
+
+<span class="c1"># Fit the model with our data (x - independent, y - dependent)</span>
+<span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+
+<span class="c1"># Print the coefficients</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Intercept (beta_0):&quot;</span><span class="p">,</span> <span class="n">model</span><span class="o">.</span><span class="n">intercept_</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Slope (beta_1):&quot;</span><span class="p">,</span> <span class="n">model</span><span class="o">.</span><span class="n">coef_</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Intercept (beta_0): [2.22215108]
+Slope (beta_1): [[2.93693502]]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Use the model to make predictions</span>
+<span class="n">y_pred</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+<span class="c1"># Plotting</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">)</span> <span class="c1"># actual data points</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">)</span> <span class="c1"># our model&#39;s predictions</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Simple Linear Regression&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/1831aafd86aa4f5485189a6e0ce102e4fa2c052916aacc37e9cac78a7e00ab36.png" src="../../_images/1831aafd86aa4f5485189a6e0ce102e4fa2c052916aacc37e9cac78a7e00ab36.png" />
+</div>
+</div>
+<section id="find-best-estimator-of-beta-1">
+<h3><span class="section-number">2.1.1. </span>Find Best estimator of <span class="math notranslate nohighlight">\(\beta_1\)</span><a class="headerlink" href="#find-best-estimator-of-beta-1" title="Link to this heading">#</a></h3>
+<section id="ordinary-least-squares">
+<h4><span class="section-number">2.1.1.1. </span>Ordinary Least Squares<a class="headerlink" href="#ordinary-least-squares" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p>The goal is to find the values of <span class="math notranslate nohighlight">\(\beta_0\)</span> and <span class="math notranslate nohighlight">\(\beta_1\)</span> that minimize the sum of the squared differences (residuals) between the observed values and the values predicted by the linear model.</p></li>
+<li><p><span class="math notranslate nohighlight">\(Minimize(e) = (\sum (y_i-(\beta_0+\beta_1 x_i))^2)\)</span>, where <span class="math notranslate nohighlight">\(y_i\)</span> and <span class="math notranslate nohighlight">\(x_i\)</span> are the observed values.</p></li>
+<li><p>Steps to calculate it</p></li>
+</ul>
+<ol class="arabic">
+<li><p>Calculate the partial derivatives of intercept <span class="math notranslate nohighlight">\(\beta_0\)</span> and let it equal to 0</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\frac{\partial e}{\partial \beta_0}=\sum_i 2(y_i-\beta_0-\beta_i x_i)(-1) = 0\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\frac{\partial e}{\partial \beta_0}= \sum_i \beta_1 x_i -n*\beta_0 -\sum_i y_i =0\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\sum_i \beta_1 x_i +n*\beta_0 -\sum_i y_i =0 \to n*\beta_1\bar x +n*\beta_0-n*\bar y = 0\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\( n*\beta_1\bar x +n*\beta_0-n\*\bar y = 0 \to \beta_1\bar x + \beta_0-\bar y = 0\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\beta_1\bar x + \beta_0-\bar y = 0 \to \beta_0=\bar y - \beta_1 \bar x\)</span></p></li>
+</ul>
+</li>
+<li><p>Calculate the partial derivative of slope <span class="math notranslate nohighlight">\(\beta_1\)</span> and let it equal to 0</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\frac{\partial e}{\partial \beta_1} = \sum_i2(y_i-\beta_1 x_i -\beta_0) (-x_i) =0\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\sum_i2(y_i-\beta_1 x_i -\beta_0) (-x_i) =0 \to \sum_i(\beta_1x_i^2+\beta_0 x_i -x_i y_i)=0\)</span></p></li>
+<li><p>Replace <span class="math notranslate nohighlight">\(\beta_0\)</span> with <span class="math notranslate nohighlight">\((\bar y - \beta_1 \bar x)\)</span> : <span class="math notranslate nohighlight">\(\sum_i(\beta_1x_i^2+(\bar y -\beta_1 \bar x) x_i -x_i y_i)=0\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\beta_1(\sum_i x_iy_i-\bar y \sum_i x_i) = \sum_i x_i^2-\bar x\sum_i x_i \to \beta_1 = \frac{\sum_i x_iy_i-\bar y \sum_i x_i}{\sum_i x_i^2-\bar x\sum_i x_i}\)</span></p></li>
+<li><p>According to the Summation Property (As shown below):</p></li>
+</ul>
+<p><img alt="image.png" src="../../_images/062.png" /></p>
+<ul class="simple">
+<li><p>We will have <span class="math notranslate nohighlight">\(\beta_1=\frac{Cov(X,Y)}{Var(X)}\)</span></p></li>
+</ul>
+</li>
+</ol>
+</section>
+</section>
+<section id="assessing-the-accuracy-of-coefficient-estimates">
+<h3><span class="section-number">2.1.2. </span>Assessing the Accuracy of Coefficient Estimates<a class="headerlink" href="#assessing-the-accuracy-of-coefficient-estimates" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(SE(\beta_1)^2 = \frac{\sigma^2}{\sum_{i=1}^{n}(x-\bar x)^2}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(SE(\beta_0)^2 = \sigma^2[\frac{1}{n}+\frac{\bar x^2}{\sum_{i=1}^n(x_i-\bar x)^2}]\)</span></p>
+<ul>
+<li><p>Where <span class="math notranslate nohighlight">\(\sigma^2 = Var(e)\)</span></p></li>
+</ul>
+</li>
+<li><p>These two standard errors can be used to compute <code class="docutils literal notranslate"><span class="pre">confidence</span> <span class="pre">interval</span></code>, for example, for 95% confidence interval, it has the form
+[<span class="math notranslate nohighlight">\(\beta_1 - 2*SE(\beta_1)\)</span>, <span class="math notranslate nohighlight">\(\beta_1 + 2*SE(\beta_1)\)</span>]</p></li>
+</ul>
+</section>
+<section id="hypothesis-testing">
+<h3><span class="section-number">2.1.3. </span>Hypothesis Testing<a class="headerlink" href="#hypothesis-testing" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Standard errors can be used to perform <code class="docutils literal notranslate"><span class="pre">hypothesis</span> <span class="pre">tests</span></code> on coefficients.</p></li>
+<li><p>To test the null hypothesis, we compute a <code class="docutils literal notranslate"><span class="pre">t-statistic</span></code>, given by<br />
+<span class="math notranslate nohighlight">\(t=\frac{\beta_1-0}{SE(\beta_1)}\)</span></p>
+<ul>
+<li><p>This value follows a t-distribution with <code class="docutils literal notranslate"><span class="pre">n-2</span></code> degrees of freedom</p></li>
+<li><p><span class="math notranslate nohighlight">\(H_0\)</span> assumes <span class="math notranslate nohighlight">\(\beta_1 = 0\)</span></p></li>
+<li><p>Since <span class="math notranslate nohighlight">\(H_0:\beta_1 = 0\)</span>, [<span class="math notranslate nohighlight">\(\beta_1 - 2*SE(\beta_1)\)</span>, <span class="math notranslate nohighlight">\(\beta_1 + 2*SE(\beta_1)\)</span>] should not contain 0</p></li>
+</ul>
+</li>
+</ul>
+<p><img alt="image.png" src="../../_images/072.png" /></p>
+</section>
+<section id="assessing-the-overall-accuracy-of-the-model">
+<h3><span class="section-number">2.1.4. </span>Assessing the Overall Accuracy of the Model<a class="headerlink" href="#assessing-the-overall-accuracy-of-the-model" title="Link to this heading">#</a></h3>
+<ul>
+<li><p>We compute the <code class="docutils literal notranslate"><span class="pre">Residual</span> <span class="pre">Standard</span> <span class="pre">Error</span></code></p>
+<p><span class="math notranslate nohighlight">\(RSE = \sqrt{\frac{1}{n-2}RSS} = \sqrt{\frac{1}{n-2}\sum_i^n(y_i-\hat y_i)^2}\)</span></p>
+<ul class="simple">
+<li><p>Where RSS is the <code class="docutils literal notranslate"><span class="pre">residual</span> <span class="pre">sum-of-squares</span></code></p></li>
+</ul>
+</li>
+<li><p>We can also use <code class="docutils literal notranslate"><span class="pre">R-squared</span></code> (fraction of variance explained):</p>
+<p><span class="math notranslate nohighlight">\(R^2 = \frac{TSS-RSS}{TSS}=1-\frac{RSS}{TSS}\)</span></p>
+<ul class="simple">
+<li><p>Where <span class="math notranslate nohighlight">\( TSS=\sum\_{i=1}^n(y_i -\bar y)^2\)</span>, is the <code class="docutils literal notranslate"><span class="pre">total</span> <span class="pre">sum</span> <span class="pre">of</span> <span class="pre">squares</span></code></p></li>
+<li><p>Also, In the simple linear regression setting, <span class="math notranslate nohighlight">\(R^2 = r^2\)</span> where <span class="math notranslate nohighlight">\(r\)</span> is the correlation between <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span>:</p></li>
+</ul>
+<p><span class="math notranslate nohighlight">\(r=\frac{\sum_{i=1}^2(x_i-\bar x)(y_i-\bar y)}{\sqrt{\sum_{i=1}^2(x_i-\bar x)^2}\sqrt{\sum_{i=1}^2(y_i-\bar y)^2}}\)</span></p>
+<p><img alt="image.png" src="../../_images/111.png" /></p>
+</li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Example data</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">1.</span><span class="p">,</span> <span class="mf">2.</span><span class="p">,</span> <span class="mf">3.</span><span class="p">,</span> <span class="mf">4.</span><span class="p">,</span> <span class="mf">5.</span><span class="p">])</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">2.</span><span class="p">,</span> <span class="mf">4.</span><span class="p">,</span> <span class="mf">5.</span><span class="p">,</span> <span class="mf">8.</span><span class="p">,</span> <span class="mf">7.</span><span class="p">])</span>
+
+<span class="c1"># Calculating means</span>
+<span class="n">x_mean</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">y_mean</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+
+<span class="c1"># Calculating Beta_1</span>
+<span class="n">numerator</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">([</span><span class="n">i</span><span class="o">*</span><span class="n">j</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">j</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="n">x_mean</span><span class="p">,</span><span class="n">y</span><span class="o">-</span><span class="n">y_mean</span><span class="p">)])</span>
+<span class="n">denominator</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">((</span><span class="n">x</span> <span class="o">-</span> <span class="n">x_mean</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">beta_1</span> <span class="o">=</span> <span class="n">numerator</span> <span class="o">/</span> <span class="n">denominator</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Beta_1 (slope) using OLS:&quot;</span><span class="p">,</span> <span class="n">beta_1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Beta_1 (slope) using OLS: [1.4]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="maximum-likelihood-estimation">
+<h3><span class="section-number">2.1.5. </span>Maximum likelihood estimation<a class="headerlink" href="#maximum-likelihood-estimation" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>In the context of linear regression, <strong>MLE assumes that the residuals</strong> (differences between observed and predicted values) <strong>are normally distributed</strong>.</p></li>
+<li><p>The method finds the parameter values that maximize the likelihood of observing the given data.</p></li>
+</ul>
+</section>
+</section>
+<section id="multiple-linear-regression">
+<h2><span class="section-number">2.2. </span>Multiple Linear Regression<a class="headerlink" href="#multiple-linear-regression" title="Link to this heading">#</a></h2>
+<p><span class="math notranslate nohighlight">\(Y=\beta_0+\beta_1 X_1+\beta_2 X_2+...+\beta_p X_p + e\)</span></p>
+<ul class="simple">
+<li><p>Correlations amongst predictors cause problems (<code class="docutils literal notranslate"><span class="pre">multicollinearity</span></code>):</p>
+<ul>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">variance</span> <span class="pre">of</span> <span class="pre">all</span> <span class="pre">coefficient</span></code> tends to increase, sometimes dramatically.</p></li>
+<li><p><span class="math notranslate nohighlight">\(t=\frac{\beta_1-0}{SE(\beta_1)}\)</span>, If <span class="math notranslate nohighlight">\(SE(\beta_1)\)</span> becomes larger, will contributes to a <span class="math notranslate nohighlight">\(t\)</span> closer to 0, which will lead to a larger <code class="docutils literal notranslate"><span class="pre">p-value</span></code></p></li>
+<li><p>Also, it’s hard to interpret.</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Claims</span> <span class="pre">of</span> <span class="pre">causality</span></code> should be <strong>avoided</strong>!</p></li>
+</ul>
+<p><img alt="image.png" src="../../_images/092.png" /></p>
+<p><img alt="image.png" src="../../_images/101.png" /></p>
+<section id="important-question-hypothesis-testing">
+<h3><span class="section-number">2.2.1. </span>Important Question (Hypothesis testing)<a class="headerlink" href="#important-question-hypothesis-testing" title="Link to this heading">#</a></h3>
+<ol class="arabic">
+<li><p>Is at least one of the predictors <span class="math notranslate nohighlight">\(X_1,X_2,...,X_p\)</span> useful in predicting the response?</p>
+<ul class="simple">
+<li><p>For this question, we use the <span class="math notranslate nohighlight">\(F-statistic\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(F=\frac{(TSS-RSS)/p}{RSS/(n-p-1)}\)</span>~<span class="math notranslate nohighlight">\(F_{p,n-p-1}\)</span></p>
+<ul>
+<li><p>Where <span class="math notranslate nohighlight">\(n\)</span> is the number of observations, <span class="math notranslate nohighlight">\(p\)</span> is the number of predictors</p></li>
+</ul>
+</li>
+<li><p><span class="math notranslate nohighlight">\(H_0:\)</span> None of these predictors are useful</p></li>
+</ul>
+<p><img alt="image.png" src="../../_images/121.png" /></p>
+<ul class="simple">
+<li><p>If <span class="math notranslate nohighlight">\(H_0\)</span> is false, we expect <span class="math notranslate nohighlight">\(F&gt;1\)</span></p></li>
+</ul>
+</li>
+<li><p>Do all the predictors help to explain <span class="math notranslate nohighlight">\(Y\)</span>, or is only a subset of the predictors useful?</p>
+<ul class="simple">
+<li><p><strong>Forward Selection</strong></p>
+<ul>
+<li><p>Begin with the <code class="docutils literal notranslate"><span class="pre">null</span> <span class="pre">model</span></code></p></li>
+<li><p>Fit <code class="docutils literal notranslate"><span class="pre">p</span></code> simple linear regression and add the null model the variable results in the <strong>lowest <code class="docutils literal notranslate"><span class="pre">RSS</span></code></strong></p></li>
+<li><p>Add to that model the variable that results in the lowest <code class="docutils literal notranslate"><span class="pre">RSS</span></code> amongst all two-variable models.</p></li>
+<li><p>Continue until stopping rules is satisfied (e.g. <code class="docutils literal notranslate"><span class="pre">p-value</span> <span class="pre">&gt;0.05</span></code> for all remaining variables)</p></li>
+</ul>
+</li>
+<li><p><strong>Backward Selection</strong></p></li>
+</ul>
+<p><img alt="image.png" src="../../_images/131.png" /></p>
+<ul class="simple">
+<li><p>Model Selection</p>
+<ul>
+<li><p>Besides <code class="docutils literal notranslate"><span class="pre">RSS</span></code>, there are some other criteria for choosing an “optimal” member in stepwise searching, including <code class="docutils literal notranslate"><span class="pre">Akaike</span> <span class="pre">information</span> <span class="pre">criterion</span> <span class="pre">(AIC)</span></code>, <code class="docutils literal notranslate"><span class="pre">Bayesian</span> <span class="pre">information</span> <span class="pre">criterion</span> <span class="pre">(BIC)</span></code>, <code class="docutils literal notranslate"><span class="pre">adjusted</span> <span class="pre">R-squared</span></code></p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>How well does the model fit the data?</p></li>
+<li><p>Given a set of predictor values, what response value should we predict, and how accurate is our prediction?</p></li>
+</ol>
+</section>
+<section id="polynomial-regression-non-linear-effects">
+<h3><span class="section-number">2.2.2. </span>Polynomial regression (non-linear effects)<a class="headerlink" href="#polynomial-regression-non-linear-effects" title="Link to this heading">#</a></h3>
+<p><img alt="image.png" src="../../_images/14.png" /></p>
+<p><img alt="image.png" src="../../_images/15.png" /></p>
+</section>
+</section>
+<section id="interesting-quotes-by-famous-statisticians">
+<h2><span class="section-number">2.3. </span>Interesting Quotes by famous Statisticians<a class="headerlink" href="#interesting-quotes-by-famous-statisticians" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><em>Essentially, all models are wrong, but some are useful</em></p>
+<ul>
+<li><p>George Box</p></li>
+</ul>
+</li>
+<li><p><em>The only way to find out what will happen when a complex system is disturbed is to disturb the system, not merely to observe it passively</em></p>
+<ul>
+<li><p>Fred Mosteller and John Tukey, paraphrasing George Box</p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./book\tranditional"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="Chapter2-Statistical-Learning.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">1. </span>Statistical Learning</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="Chapter4-Classification.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">3. </span>Classification</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simple-linear-regression">2.1. Simple Linear Regression</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#find-best-estimator-of-beta-1">2.1.1. Find Best estimator of <span class="math notranslate nohighlight">\(\beta_1\)</span></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ordinary-least-squares">2.1.1.1. Ordinary Least Squares</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#assessing-the-accuracy-of-coefficient-estimates">2.1.2. Assessing the Accuracy of Coefficient Estimates</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hypothesis-testing">2.1.3. Hypothesis Testing</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#assessing-the-overall-accuracy-of-the-model">2.1.4. Assessing the Overall Accuracy of the Model</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#maximum-likelihood-estimation">2.1.5. Maximum likelihood estimation</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multiple-linear-regression">2.2. Multiple Linear Regression</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#important-question-hypothesis-testing">2.2.1. Important Question (Hypothesis testing)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#polynomial-regression-non-linear-effects">2.2.2. Polynomial regression (non-linear effects)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interesting-quotes-by-famous-statisticians">2.3. Interesting Quotes by famous Statisticians</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Yalin Yang
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

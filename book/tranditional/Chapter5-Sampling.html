@@ -1,0 +1,884 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>4. Sampling &#8212; Machine Learning for Socio-Economic and Georeferenced Data</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b76e3c8a" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'book/tranditional/Chapter5-Sampling';</script>
+    <link rel="canonical" href="https://gisyaliny.github.io/gisc-6323/book/tranditional/Chapter5-Sampling.html" />
+    <link rel="icon" href="../../_static/fav.ico"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="5. Model Selection" href="Chapter6-Model-Selection.html" />
+    <link rel="prev" title="3. Classification" href="Chapter4-Classification.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/logo.png" class="logo__image only-light" alt="Machine Learning for Socio-Economic and Georeferenced Data - Home"/>
+    <script>document.write(`<img src="../../_static/logo.png" class="logo__image only-dark" alt="Machine Learning for Socio-Economic and Georeferenced Data - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Introduction &amp; Overview</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Intro/author.html">About the Author</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Intro/preface.html">Preface</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Traditional statistics</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Chapter2-Statistical-Learning.html">1. Statistical Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Chapter3-Linear-Regression.html">2. Regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Chapter4-Classification.html">3. Classification</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">4. Sampling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Chapter6-Model-Selection.html">5. Model Selection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Chapter6-Dimention-Reduction.html">6. Dimension Reduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Chapter7-non-linear-regression.html">7. Non-linear Regression</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Deep Learning Basic</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../torch/01-torch-installation.html">8. <code class="docutils literal notranslate"><span class="pre">torch</span></code> Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../torch/02-tensorflow-installation.html">9. <code class="docutils literal notranslate"><span class="pre">Keras</span></code> installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../torch/03-Tensor.html">10. Tensor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../torch/04-SGD.html">11. Gradient Descent (GD)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../torch/05-Autograd.html">12. Autograd</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Computer Vision</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../cv/Chapter10-CNN.html">13. Convolution Neural Network</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Natural Language Processing</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../nlp/Chapter10-NLP.html">14. Natural Language Processing</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://mybinder.org/v2/gh/gisyaliny/gisc-6323/master?urlpath=tree/book/tranditional/Chapter5-Sampling.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onBinder"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../../_static/images/logo_binder.svg">
+  </span>
+<span class="btn__text-container">Binder</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/gisyaliny/gisc-6323/blob/master/book/tranditional/Chapter5-Sampling.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onColab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/gisyaliny/gisc-6323" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/gisyaliny/gisc-6323/edit/main/book/tranditional/Chapter5-Sampling.ipynb" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/gisyaliny/gisc-6323/issues/new?title=Issue%20on%20page%20%2Fbook/tranditional/Chapter5-Sampling.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/book/tranditional/Chapter5-Sampling.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Sampling</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estimate-testing-error">4.1. Estimate Testing error</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#aic-akaike-information-criterion">4.1.1. AIC (Akaike Information Criterion)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bic-bayesian-information-criterion">4.1.2. BIC (Bayesian Information Criterion)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example">4.1.3. Example</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cross-validation">4.2. Cross Validation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#k-fold-cross-validation">4.2.1. K-fold Cross Validation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-using-cross-validation">4.2.2. Example using Cross Validation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#common-mistakes-in-cross-validation">4.2.3. Common mistakes in Cross Validation</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#feature-selection-before-cross-validation">4.2.3.1. <strong>Feature selection before Cross validation</strong></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">4.2.3.2. Example</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bootstrap">4.3. Bootstrap</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-for-bootstrap">4.3.1. Example for Bootstrap</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#why-we-need-bootstrap">4.3.2. Why we need Bootstrap</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="sampling">
+<h1><span class="section-number">4. </span>Sampling<a class="headerlink" href="#sampling" title="Link to this heading">#</a></h1>
+<ul class="simple">
+<li><p>Sometimes we need to test the model performance, but we can not use the same data as training and testing. therefore we need sampling strategies.</p></li>
+<li><p><strong>Training error</strong> (blue line): Training error, also known as in-sample error, is the error that occurs when a model is applied to the data it was trained on.</p></li>
+<li><p><strong>Testing error</strong> (red line): Testing error, or out-of-sample error, is the error that occurs when the model is applied to a new dataset that it hasn’t seen before, often a validation or test set.</p></li>
+</ul>
+<p><img alt="image-3.png" src="../../_images/29.png" /></p>
+<section id="estimate-testing-error">
+<h2><span class="section-number">4.1. </span>Estimate Testing error<a class="headerlink" href="#estimate-testing-error" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>When we use training error to estimate testing error, we often get a <strong>underestimated</strong> result. Some methods make a <strong>mathematical adjustment</strong> to the training error rate in order to estimate the test error rate.</p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(-2ln(L)\)</span> use the same way as RSS, in linear regression, <span class="math notranslate nohighlight">\(-2log(L) = RSS/\sigma^2\)</span></p></li>
+</ul>
+</li>
+</ul>
+<section id="aic-akaike-information-criterion">
+<h3><span class="section-number">4.1.1. </span>AIC (Akaike Information Criterion)<a class="headerlink" href="#aic-akaike-information-criterion" title="Link to this heading">#</a></h3>
+<div class="math notranslate nohighlight">
+\[
+AIC=2k-2ln(L)
+\]</div>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(k\)</span> is the number of parameters in the model</p></li>
+<li><p><span class="math notranslate nohighlight">\(L\)</span> is the maximum value of the likelihood function for the model</p>
+<ul>
+<li><p>Normally, we assume <strong>errors are normally distributed</strong> (offsets between expectation and observation)</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="bic-bayesian-information-criterion">
+<h3><span class="section-number">4.1.2. </span>BIC (Bayesian Information Criterion)<a class="headerlink" href="#bic-bayesian-information-criterion" title="Link to this heading">#</a></h3>
+<div class="math notranslate nohighlight">
+\[
+BIC=ln(n)k-2ln(L)
+\]</div>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(n\)</span> is the number of observations</p></li>
+<li><p>The other terms are as defined for AIC</p></li>
+<li><p>when <span class="math notranslate nohighlight">\(n &gt; 7\)</span>, <span class="math notranslate nohighlight">\(BIC\)</span> put more penalty than <span class="math notranslate nohighlight">\(AIC\)</span></p></li>
+</ul>
+</section>
+<section id="example">
+<h3><span class="section-number">4.1.3. </span>Example<a class="headerlink" href="#example" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Want to compare linear vs higher-order polynomial terms in a linear regression</p></li>
+</ul>
+<p><img alt="image-3.png" src="../../_images/30.png" /></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">statsmodels.api</span> <span class="k">as</span> <span class="nn">sm</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Generate some data</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<span class="n">Y</span> <span class="o">=</span> <span class="mi">3</span> <span class="o">-</span> <span class="mi">2</span><span class="o">*</span><span class="n">X</span> <span class="o">+</span> <span class="n">X</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+
+<span class="c1"># Fit models of varying complexity</span>
+<span class="n">results</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="k">for</span> <span class="n">degree</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">6</span><span class="p">):</span>
+    <span class="n">features</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">column_stack</span><span class="p">([</span><span class="n">X</span><span class="o">**</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">degree</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)])</span>
+    <span class="n">features</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">add_constant</span><span class="p">(</span><span class="n">features</span><span class="p">)</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">OLS</span><span class="p">(</span><span class="n">Y</span><span class="p">,</span> <span class="n">features</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+    <span class="n">results</span><span class="p">[</span><span class="n">degree</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;model&#39;</span><span class="p">:</span> <span class="n">model</span><span class="p">,</span> <span class="s1">&#39;AIC&#39;</span><span class="p">:</span> <span class="n">model</span><span class="o">.</span><span class="n">aic</span><span class="p">,</span> <span class="s1">&#39;BIC&#39;</span><span class="p">:</span> <span class="n">model</span><span class="o">.</span><span class="n">bic</span><span class="p">}</span>
+
+<span class="c1"># Find the best model according to AIC and BIC</span>
+<span class="n">best_by_aic</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">results</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">k</span><span class="p">:</span> <span class="n">results</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="s1">&#39;AIC&#39;</span><span class="p">])</span>
+<span class="n">best_by_bic</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">results</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">k</span><span class="p">:</span> <span class="n">results</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="s1">&#39;BIC&#39;</span><span class="p">])</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Best model by AIC is of degree </span><span class="si">{</span><span class="n">best_by_aic</span><span class="si">}</span><span class="s1"> with AIC = </span><span class="si">{</span><span class="n">results</span><span class="p">[</span><span class="n">best_by_aic</span><span class="p">][</span><span class="s2">&quot;AIC&quot;</span><span class="p">]</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Best model by BIC is of degree </span><span class="si">{</span><span class="n">best_by_bic</span><span class="si">}</span><span class="s1"> with BIC = </span><span class="si">{</span><span class="n">results</span><span class="p">[</span><span class="n">best_by_bic</span><span class="p">][</span><span class="s2">&quot;BIC&quot;</span><span class="p">]</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Best model by AIC is of degree 2 with AIC = 425.7373213865948
+Best model by BIC is of degree 2 with BIC = 433.55283194455905
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="cross-validation">
+<h2><span class="section-number">4.2. </span>Cross Validation<a class="headerlink" href="#cross-validation" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>In normal validation approach, <strong>only a subset of the observation are used to fit the model</strong></p>
+<ul>
+<li><p>The validation error may tend to <strong>overestimate the test error</strong> for the model fit on the entire data set</p></li>
+<li><p>For some shrinkage method (e.g. Lasso and Ridge regression), it’s hard to find the number of predictors <span class="math notranslate nohighlight">\(k\)</span></p></li>
+<li><p>Cross validation provide a direct way to test error, instead of using the variance of error <span class="math notranslate nohighlight">\(\sigma^2\)</span></p></li>
+</ul>
+</li>
+</ul>
+<section id="k-fold-cross-validation">
+<h3><span class="section-number">4.2.1. </span>K-fold Cross Validation<a class="headerlink" href="#k-fold-cross-validation" title="Link to this heading">#</a></h3>
+<ul>
+<li><p>Let the <span class="math notranslate nohighlight">\(K\)</span> parts be <span class="math notranslate nohighlight">\(C_1,C_2,...,C_K\)</span>, where <span class="math notranslate nohighlight">\(C_k\)</span> denotes the indices of the observations in part <span class="math notranslate nohighlight">\(k\)</span>. There’re <span class="math notranslate nohighlight">\(n_k\)</span> observations in part k, where <span class="math notranslate nohighlight">\(n_k=n/K\)</span></p></li>
+<li><p>Compute (regression)</p>
+<div class="math notranslate nohighlight">
+\[
+  CV_{(K)}=\sum_{k=1}^K\frac{n_k}{n}MSE_k
+  \]</div>
+</li>
+<li><p>For Classification, Compute * Where <span class="math notranslate nohighlight">\(Err_k = \sum_{i\in C_k}I(y_i\neq \hat{y_i})/n_k\)</span>
+$<span class="math notranslate nohighlight">\(
+CV_{(K)}=\sum_{k=1}^K\frac{n_k}{n}Err_k
+\)</span>$</p></li>
+<li><p>basically the weighted sum of <span class="math notranslate nohighlight">\(MSE_k\)</span> by number of observations in <span class="math notranslate nohighlight">\(k\)</span></p></li>
+<li><p>Since each training set is only <span class="math notranslate nohighlight">\((K-1)/K\)</span>, the <strong>estimates of prediction error will typically be biased upward</strong>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(K=5\)</span> or <span class="math notranslate nohighlight">\(10\)</span> provides a good compromise for bias-variance tradeoff.</p></li>
+</ul>
+<p><img alt="image-3.png" src="../../_images/31.png" /></p>
+</section>
+<section id="example-using-cross-validation">
+<h3><span class="section-number">4.2.2. </span>Example using Cross Validation<a class="headerlink" href="#example-using-cross-validation" title="Link to this heading">#</a></h3>
+<p><img alt="image-3.png" src="../../_images/32.png" /></p>
+</section>
+<section id="common-mistakes-in-cross-validation">
+<h3><span class="section-number">4.2.3. </span>Common mistakes in Cross Validation<a class="headerlink" href="#common-mistakes-in-cross-validation" title="Link to this heading">#</a></h3>
+<p><img alt="image-3.png" src="../../_images/33.png" /></p>
+<section id="feature-selection-before-cross-validation">
+<h4><span class="section-number">4.2.3.1. </span><strong>Feature selection before Cross validation</strong><a class="headerlink" href="#feature-selection-before-cross-validation" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p>Performing feature selection before cross-validation can lead to data leakage and overfitting, as you’re peeking at the entire dataset to select features based on their correlation with the target variable.</p></li>
+<li><p>This can result in <strong>overly optimistic performance estimates</strong>.</p></li>
+</ul>
+</section>
+<section id="id1">
+<h4><span class="section-number">4.2.3.2. </span>Example<a class="headerlink" href="#id1" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p>We randomly generate 50 predictors with different mean and variance normal distribution, and random label Y</p></li>
+<li><p>We select 5 predictors having the largest correlation with the radom label</p></li>
+<li><p>Then we put this 5 predictors into logistic regression to get CV Score</p></li>
+<li><p>Theoretically, we will get CV score around 50% since the independent simulation, but result gives us much higher score</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">cross_val_score</span>
+<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LogisticRegression</span>
+<span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">pearsonr</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set random seed for reproducibility</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+
+<span class="c1"># Generate X with 50 random arrays following normal distribution with different mean and variance</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">50</span><span class="p">),</span> <span class="n">scale</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">50</span><span class="p">),</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">50</span><span class="p">))</span>
+
+<span class="c1"># Generate y as random labels from uniform distribution</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+
+<span class="c1"># Step 2: Select the 5 features most correlated with the outcome</span>
+<span class="c1">## This step is wrong since model have seen </span>
+<span class="c1">## all labels to get most correlated predictors</span>
+<span class="n">correlations</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">pearsonr</span><span class="p">(</span><span class="n">X</span><span class="p">[:,</span> <span class="n">i</span><span class="p">],</span> <span class="n">y</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])])</span>
+<span class="n">top_five_indices</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argsort</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">correlations</span><span class="p">))[</span><span class="o">-</span><span class="mi">5</span><span class="p">:]</span>
+
+<span class="c1"># Step 3: Perform cross-validation using only the selected features</span>
+<span class="n">selected_X</span> <span class="o">=</span> <span class="n">X</span><span class="p">[:,</span> <span class="n">top_five_indices</span><span class="p">]</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">()</span>
+
+<span class="c1"># Use cross-validation to estimate the test error</span>
+<span class="n">cv_scores</span> <span class="o">=</span> <span class="n">cross_val_score</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">selected_X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+
+<span class="c1"># The mean cross-validated score can be misleadingly high due to feature selection bias</span>
+<span class="n">mean_cv_score</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">cv_scores</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Cross-validation scores:&quot;</span><span class="p">,</span> <span class="n">cv_scores</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Mean CV score: </span><span class="si">{</span><span class="n">mean_cv_score</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Cross-validation scores: [0.55 0.7  0.45 0.75 0.75]
+Mean CV score: 0.64
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+</section>
+<section id="bootstrap">
+<h2><span class="section-number">4.3. </span>Bootstrap<a class="headerlink" href="#bootstrap" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>The <code class="docutils literal notranslate"><span class="pre">bootstrap</span></code> is a flexible and powerful statistical tool that can be used to <strong>quantify the uncertainty associated with a given estimator or statistical learning method</strong>.</p>
+<ul>
+<li><p>For example, it provides the estimate of standard error of a coefficient, or a confidence interval for that coefficient.</p></li>
+</ul>
+</li>
+</ul>
+<section id="example-for-bootstrap">
+<h3><span class="section-number">4.3.1. </span>Example for Bootstrap<a class="headerlink" href="#example-for-bootstrap" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>We want to invest our money in two financial assets that yield returns of X and Y</p></li>
+<li><p>We will invest a fraction <span class="math notranslate nohighlight">\(\alpha\)</span> of our money in <span class="math notranslate nohighlight">\(X\)</span>, and <span class="math notranslate nohighlight">\(1-\alpha\)</span> in Y</p></li>
+<li><p>We wish to choose <span class="math notranslate nohighlight">\(\alpha\)</span> to minimize the total risk, or variance (<span class="math notranslate nohighlight">\(Var(\alpha X+(1-\alpha)Y)\)</span>), of our investment.
+$<span class="math notranslate nohighlight">\(
+Var(\alpha X+(1-\alpha)Y) = \alpha ^2Var(X) + (1-\alpha)^2 Var(Y) + 2\alpha(1-\alpha) CoV(XY)
+\)</span><span class="math notranslate nohighlight">\(
+\)</span><span class="math notranslate nohighlight">\(
+\frac{\partial f}{\partial \alpha} = 2\alpha Var(x) - 2(1-\alpha) Var(Y) + 2(1-\alpha) CoV(XY) - 2\alpha(XY)
+\)</span>$</p></li>
+<li><p>Let <span class="math notranslate nohighlight">\(\frac{\partial f}{\partial \alpha}  = 0\)</span>, we get
+$<span class="math notranslate nohighlight">\(
+\alpha = \frac{Var(Y)-Cov(XY)}{Var(X)+Var(Y)-2CoV(XY)}
+\)</span>$</p></li>
+<li><p>We can estimate <span class="math notranslate nohighlight">\(Var(X), Var(Y)\)</span> and <span class="math notranslate nohighlight">\(CoV(XY)\)</span> using sampling / simulation</p></li>
+</ul>
+<p><img alt="image-3.png" src="../../_images/34.png" /></p>
+<p><img alt="image-3.png" src="../../_images/35.png" /></p>
+</section>
+<section id="why-we-need-bootstrap">
+<h3><span class="section-number">4.3.2. </span>Why we need Bootstrap<a class="headerlink" href="#why-we-need-bootstrap" title="Link to this heading">#</a></h3>
+<ol class="arabic">
+<li><p>In real word analysis, we cannot generate new samples from the original population.</p>
+<ul class="simple">
+<li><p>Bootstrap allows us to mimic the process of obtaining new data sets. So we can estimate the variability of our estimate without generating additional samples</p></li>
+<li><p>Each bootstrap datasets is created by <strong>sampling with replacement</strong>, and is the <strong>same size</strong> as the original dataset.</p></li>
+<li><p>There is about a <strong>two-thirds overlap</strong> in a bootstrap sample with the original data</p></li>
+</ul>
+<p><img alt="image-3.png" src="../../_images/36.png" /></p>
+</li>
+<li><p>Bootstrap <strong>requires data being independent to each other</strong>, some data like time series are not applicable for Bootstrap</p>
+<ul>
+<li><p>For time series, we can divide data by blocks, then use block to do bootstrap</p>
+<p><img alt="image-3.png" src="../../_images/37.png" /></p>
+</li>
+</ul>
+</li>
+</ol>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./book\tranditional"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="Chapter4-Classification.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">3. </span>Classification</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="Chapter6-Model-Selection.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">5. </span>Model Selection</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estimate-testing-error">4.1. Estimate Testing error</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#aic-akaike-information-criterion">4.1.1. AIC (Akaike Information Criterion)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bic-bayesian-information-criterion">4.1.2. BIC (Bayesian Information Criterion)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example">4.1.3. Example</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cross-validation">4.2. Cross Validation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#k-fold-cross-validation">4.2.1. K-fold Cross Validation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-using-cross-validation">4.2.2. Example using Cross Validation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#common-mistakes-in-cross-validation">4.2.3. Common mistakes in Cross Validation</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#feature-selection-before-cross-validation">4.2.3.1. <strong>Feature selection before Cross validation</strong></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">4.2.3.2. Example</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bootstrap">4.3. Bootstrap</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-for-bootstrap">4.3.1. Example for Bootstrap</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#why-we-need-bootstrap">4.3.2. Why we need Bootstrap</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Yalin Yang
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

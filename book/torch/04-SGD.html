@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>4. Gradient Descent (GD) &#8212; Machine Learning for Socio-Economic and Georeferenced Data</title>
+    <title>11. Gradient Descent (GD) &#8212; Machine Learning for Socio-Economic and Georeferenced Data</title>
   
   
   
@@ -64,8 +64,8 @@
     <link rel="icon" href="../../_static/fav.ico"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="5. Autograd" href="05-Autograd.html" />
-    <link rel="prev" title="3. Tensor" href="03-Tensor.html" />
+    <link rel="next" title="12. Autograd" href="05-Autograd.html" />
+    <link rel="prev" title="10. Tensor" href="03-Tensor.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -177,13 +177,31 @@
 <li class="toctree-l1"><a class="reference internal" href="../Intro/author.html">About the Author</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Intro/preface.html">Preface</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Deep Learning with R torch</span></p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Traditional statistics</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../tranditional/Chapter2-Statistical-Learning.html">1. Statistical Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tranditional/Chapter3-Linear-Regression.html">2. Regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tranditional/Chapter4-Classification.html">3. Classification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tranditional/Chapter5-Sampling.html">4. Sampling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tranditional/Chapter6-Model-Selection.html">5. Model Selection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tranditional/Chapter6-Dimention-Reduction.html">6. Dimension Reduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tranditional/Chapter7-non-linear-regression.html">7. Non-linear Regression</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Deep Learning Basic</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="01-torch-installation.html">1. <code class="docutils literal notranslate"><span class="pre">torch</span></code> Installation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="02-tensorflow-installation.html">2. <code class="docutils literal notranslate"><span class="pre">Keras</span></code> installation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="03-Tensor.html">3. Tensor</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">4. Gradient Descent (GD)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="05-Autograd.html">5. Autograd</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01-torch-installation.html">8. <code class="docutils literal notranslate"><span class="pre">torch</span></code> Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02-tensorflow-installation.html">9. <code class="docutils literal notranslate"><span class="pre">Keras</span></code> installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03-Tensor.html">10. Tensor</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">11. Gradient Descent (GD)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05-Autograd.html">12. Autograd</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Computer Vision</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../cv/Chapter10-CNN.html">13. Convolution Neural Network</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Natural Language Processing</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../nlp/Chapter10-NLP.html">14. Natural Language Processing</a></li>
 </ul>
 
     </div>
@@ -396,19 +414,19 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction-to-gradient-descent">4.1. Introduction to Gradient Descent</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#stochastic-gradient-descent-sgd">4.2. Stochastic Gradient Descent (SGD)</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#general-algorithm-for-implementing-sgd">4.2.1. General algorithm for implementing SGD</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction-to-gradient-descent">11.1. Introduction to Gradient Descent</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#stochastic-gradient-descent-sgd">11.2. Stochastic Gradient Descent (SGD)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#general-algorithm-for-implementing-sgd">11.2.1. General algorithm for implementing SGD</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-linear-regression-with-gd">4.3. Example: Linear Regression with GD</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#simulate-linear-regression-data">4.3.1. Simulate linear regression data</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#define-loss-function-and-gradient-search-function">4.3.2. Define loss function and gradient search function</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#start-iteration">4.3.3. Start Iteration</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#visualize-the-loss-surface">4.3.4. Visualize the loss surface</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-linear-regression-with-gd">11.3. Example: Linear Regression with GD</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#simulate-linear-regression-data">11.3.1. Simulate linear regression data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#define-loss-function-and-gradient-search-function">11.3.2. Define loss function and gradient search function</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#start-iteration">11.3.3. Start Iteration</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#visualize-the-loss-surface">11.3.4. Visualize the loss surface</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-with-sgd">4.4. Example with SGD</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-with-sgd">11.4. Example with SGD</a></li>
 </ul>
             </nav>
         </div>
@@ -421,7 +439,7 @@ document.write(`
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="gradient-descent-gd">
-<h1><span class="section-number">4. </span>Gradient Descent (GD)<a class="headerlink" href="#gradient-descent-gd" title="Link to this heading">#</a></h1>
+<h1><span class="section-number">11. </span>Gradient Descent (GD)<a class="headerlink" href="#gradient-descent-gd" title="Link to this heading">#</a></h1>
 <ul class="simple">
 <li><p>Learning Material for
 <a class="reference external" href="https://gisyaliny.github.io/notes/Math/Advance-Math/Chapter2-Differential/">Differential</a></p></li>
@@ -431,7 +449,7 @@ Algbra</a></p></li>
 (Video)</a></p></li>
 </ul>
 <section id="introduction-to-gradient-descent">
-<h2><span class="section-number">4.1. </span>Introduction to Gradient Descent<a class="headerlink" href="#introduction-to-gradient-descent" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">11.1. </span>Introduction to Gradient Descent<a class="headerlink" href="#introduction-to-gradient-descent" title="Link to this heading">#</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">Gradient</span> <span class="pre">Descent</span></code> is an optimization algorithm used to minimize a
 function by <strong>iteratively</strong> moving in the direction of steepest descent.
 It is widely used in machine learning to minimize the cost function.</p>
@@ -441,7 +459,7 @@ to the parameters.</p>
 <p><img alt="" src="https://editor.analyticsvidhya.com/uploads/631731_P7z2BKhd0R-9uyn9ThDasA.png" /></p>
 </section>
 <section id="stochastic-gradient-descent-sgd">
-<h2><span class="section-number">4.2. </span>Stochastic Gradient Descent (SGD)<a class="headerlink" href="#stochastic-gradient-descent-sgd" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">11.2. </span>Stochastic Gradient Descent (SGD)<a class="headerlink" href="#stochastic-gradient-descent-sgd" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Stochastic_gradient_descent">Reference</a></p></li>
 </ul>
@@ -452,7 +470,7 @@ based on a <strong>single training example</strong> at each iteration. * This ma
 SGD much <strong>faster</strong> and more <strong>scalable</strong>, especially for large
 datasets.</p>
 <section id="general-algorithm-for-implementing-sgd">
-<h3><span class="section-number">4.2.1. </span>General algorithm for implementing SGD<a class="headerlink" href="#general-algorithm-for-implementing-sgd" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">11.2.1. </span>General algorithm for implementing SGD<a class="headerlink" href="#general-algorithm-for-implementing-sgd" title="Link to this heading">#</a></h3>
 <ol class="arabic simple">
 <li><p>Initialize the model parameters randomly or with some predefined
 values.</p></li>
@@ -472,9 +490,9 @@ iterations.</p></li>
 </section>
 </section>
 <section id="example-linear-regression-with-gd">
-<h2><span class="section-number">4.3. </span>Example: Linear Regression with GD<a class="headerlink" href="#example-linear-regression-with-gd" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">11.3. </span>Example: Linear Regression with GD<a class="headerlink" href="#example-linear-regression-with-gd" title="Link to this heading">#</a></h2>
 <section id="simulate-linear-regression-data">
-<h3><span class="section-number">4.3.1. </span>Simulate linear regression data<a class="headerlink" href="#simulate-linear-regression-data" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">11.3.1. </span>Simulate linear regression data<a class="headerlink" href="#simulate-linear-regression-data" title="Link to this heading">#</a></h3>
 <p><em>y</em> = 1 + <em>x</em> + <em>e</em>, where <em>e</em> ~ normal(0,0.25)</p>
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">set.seed</span><span class="p">(</span><span class="m">1</span><span class="p">)</span>
 <span class="n">b0</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">1</span><span class="p">;</span><span class="w"> </span><span class="n">b1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">1</span><span class="p">;</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">200</span>
@@ -511,7 +529,7 @@ iterations.</p></li>
 <p><img alt="" src="../../_images/unnamed-chunk-2-1.png" /></p>
 </section>
 <section id="define-loss-function-and-gradient-search-function">
-<h3><span class="section-number">4.3.2. </span>Define loss function and gradient search function<a class="headerlink" href="#define-loss-function-and-gradient-search-function" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">11.3.2. </span>Define loss function and gradient search function<a class="headerlink" href="#define-loss-function-and-gradient-search-function" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p><a class="reference external" href="https://pytorch.org/docs/stable/nn.html#loss-functions">Loss function in
 <code class="docutils literal notranslate"><span class="pre">torch</span></code></a></p></li>
@@ -570,7 +588,7 @@ $<span class="math notranslate nohighlight">\(
 </div>
 </section>
 <section id="start-iteration">
-<h3><span class="section-number">4.3.3. </span>Start Iteration<a class="headerlink" href="#start-iteration" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">11.3.3. </span>Start Iteration<a class="headerlink" href="#start-iteration" title="Link to this heading">#</a></h3>
 <p>In this example, we set * <code class="docutils literal notranslate"><span class="pre">alpha</span></code> (<code class="docutils literal notranslate"><span class="pre">learning</span> <span class="pre">rate</span></code>) as 0.05 *
 <code class="docutils literal notranslate"><span class="pre">treshold</span></code> as 0.0005 * <code class="docutils literal notranslate"><span class="pre">maxIter</span></code> as 200</p>
 <p>We can start <em>β̂</em><sub>0</sub> and <em>β̂</em><sub>1</sub> randomly, but for
@@ -649,7 +667,7 @@ visualization purpose, we set both as 0 at first</p>
 <p>It convergence before 200 round iterations.</p>
 </section>
 <section id="visualize-the-loss-surface">
-<h3><span class="section-number">4.3.4. </span>Visualize the loss surface<a class="headerlink" href="#visualize-the-loss-surface" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">11.3.4. </span>Visualize the loss surface<a class="headerlink" href="#visualize-the-loss-surface" title="Link to this heading">#</a></h3>
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">b0Grid</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">seq</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="n">by</span><span class="o">=</span><span class="m">0.01</span><span class="p">)</span>
 <span class="n">b1Grid</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">seq</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="n">by</span><span class="o">=</span><span class="m">0.01</span><span class="p">)</span>
 
@@ -698,7 +716,7 @@ visualization purpose, we set both as 0 at first</p>
 </section>
 </section>
 <section id="example-with-sgd">
-<h2><span class="section-number">4.4. </span>Example with SGD<a class="headerlink" href="#example-with-sgd" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">11.4. </span>Example with SGD<a class="headerlink" href="#example-with-sgd" title="Link to this heading">#</a></h2>
 <p>The process is very similar to GD, but we do not compute the gradients
 from whole dataset, but from samples</p>
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">set.seed</span><span class="p">(</span><span class="m">123</span><span class="p">)</span>
@@ -765,7 +783,7 @@ from whole dataset, but from samples</p>
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">3. </span>Tensor</p>
+        <p class="prev-next-title"><span class="section-number">10. </span>Tensor</p>
       </div>
     </a>
     <a class="right-next"
@@ -773,7 +791,7 @@ from whole dataset, but from samples</p>
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">5. </span>Autograd</p>
+        <p class="prev-next-title"><span class="section-number">12. </span>Autograd</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -793,19 +811,19 @@ from whole dataset, but from samples</p>
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction-to-gradient-descent">4.1. Introduction to Gradient Descent</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#stochastic-gradient-descent-sgd">4.2. Stochastic Gradient Descent (SGD)</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#general-algorithm-for-implementing-sgd">4.2.1. General algorithm for implementing SGD</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction-to-gradient-descent">11.1. Introduction to Gradient Descent</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#stochastic-gradient-descent-sgd">11.2. Stochastic Gradient Descent (SGD)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#general-algorithm-for-implementing-sgd">11.2.1. General algorithm for implementing SGD</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-linear-regression-with-gd">4.3. Example: Linear Regression with GD</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#simulate-linear-regression-data">4.3.1. Simulate linear regression data</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#define-loss-function-and-gradient-search-function">4.3.2. Define loss function and gradient search function</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#start-iteration">4.3.3. Start Iteration</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#visualize-the-loss-surface">4.3.4. Visualize the loss surface</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-linear-regression-with-gd">11.3. Example: Linear Regression with GD</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#simulate-linear-regression-data">11.3.1. Simulate linear regression data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#define-loss-function-and-gradient-search-function">11.3.2. Define loss function and gradient search function</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#start-iteration">11.3.3. Start Iteration</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#visualize-the-loss-surface">11.3.4. Visualize the loss surface</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-with-sgd">4.4. Example with SGD</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-with-sgd">11.4. Example with SGD</a></li>
 </ul>
   </nav></div>
 
