@@ -10,7 +10,18 @@ parts:
       - file: book/Intro/author
       - file: book/Intro/preface
       # - file: book/preface/software
-  - caption: Deep Learning with R torch
+  - caption: Traditional statistics
+    numbered: true
+    maxdepth: 2
+    chapters:
+    - file: book/tranditional/Chapter2-Statistical-Learning
+    - file: book/tranditional/Chapter3-Linear-Regression
+    - file: book/tranditional/Chapter4-Classification
+    - file: book/tranditional/Chapter5-Sampling
+    - file: book/tranditional/Chapter6-Model-Selection
+    - file: book/tranditional/Chapter6-Dimention-Reduction
+    - file: book/tranditional/Chapter7-non-linear-regression
+  - caption: Deep Learning Basic
     numbered: true
     maxdepth: 2
     chapters:
@@ -19,11 +30,16 @@ parts:
       - file: book/torch/03-Tensor
       - file: book/torch/04-SGD
       - file: book/torch/05-Autograd
-  #     - file: book/python/06_dictionaries
-  #     - file: book/python/07_user_input_while_loops
-  #     - file: book/python/08_functions
-  #     - file: book/python/09_classes
-  #     - file: book/python/10_files_and_exceptions
+  - caption: Computer Vision
+    numbered: true
+    maxdepth: 2
+    chapters:
+      - file: book/cv/Chapter10-CNN
+  - caption: Natural Language Processing
+    numbered: true
+    maxdepth: 2
+    chapters:
+      - file: book/nlp/Chapter10-NLP
   # - caption: Appendix
   #   chapters:
   #     - file: book/gee/bibliography
