@@ -6,53 +6,53 @@
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>14. Natural Language Processing &#8212; Machine Learning for Socio-Economic and Georeferenced Data</title>
+    <title>17. Natural Language Processing &#8212; Machine Learning for Socio-Economic and Georeferenced Data</title>
   
   
   
   <script data-cfasync="false">
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
-    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
-<link href="../../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
-<link href="../../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
 
   
-  <link href="../../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b76e3c8a" />
-    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
-    <link rel="stylesheet" type="text/css" href="../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
-<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
-  <script src="../../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
     <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
-    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../../_static/copybutton.js?v=f281be69"></script>
-    <script src="../../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="../../_static/design-tabs.js?v=36754332"></script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
@@ -64,7 +64,8 @@
     <link rel="icon" href="../../_static/fav.ico"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="prev" title="13. Convolution Neural Network" href="../cv/Chapter10-CNN.html" />
+    <link rel="next" title="18. Recurrent Neural Networks" href="Chapter10-RNN.html" />
+    <link rel="prev" title="16. Convolution Neural Network" href="../cv/Chapter10-CNN.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -74,27 +75,23 @@
 
   
   
-  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
   
   <div id="pst-scroll-pixel-helper"></div>
   
   <button type="button" class="btn rounded-pill" id="pst-back-to-top">
-    <i class="fa-solid fa-arrow-up"></i>
-    Back to top
-  </button>
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
   <input type="checkbox"
           class="sidebar-toggle"
-          name="__primary"
-          id="__primary"/>
-  <label class="overlay overlay-primary" for="__primary"></label>
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
   
   <input type="checkbox"
           class="sidebar-toggle"
-          name="__secondary"
-          id="__secondary"/>
-  <label class="overlay overlay-secondary" for="__secondary"></label>
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
   
   <div class="search-button__wrapper">
     <div class="search-button__overlay"></div>
@@ -116,8 +113,13 @@
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
 </form></div>
   </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
   
-    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
     </header>
   
 
@@ -141,6 +143,8 @@
         <div class="sidebar-primary-item">
 
   
+    
+  
 
 <a class="navbar-brand logo" href="../../index.html">
   
@@ -162,7 +166,7 @@
 
  <script>
  document.write(`
-   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass"></i>
     <span class="search-button__default-text">Search</span>
     <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
@@ -185,22 +189,30 @@
 <li class="toctree-l1"><a class="reference internal" href="../tranditional/Chapter6-Model-Selection.html">5. Model Selection</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tranditional/Chapter6-Dimention-Reduction.html">6. Dimension Reduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tranditional/Chapter7-non-linear-regression.html">7. Non-linear Regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tranditional/Chapter4-Logistic-Regression.html">8. Logistic Regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tranditional/Chapter8-Tree-Based-Methods.html">9. Tree-Based Methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tranditional/Chapter9-Support-Vector-Machines.html">10. Support Vector Machines (SVM)</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Deep Learning Basic</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../torch/01-torch-installation.html">8. <code class="docutils literal notranslate"><span class="pre">torch</span></code> Installation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../torch/02-tensorflow-installation.html">9. <code class="docutils literal notranslate"><span class="pre">Keras</span></code> installation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../torch/03-Tensor.html">10. Tensor</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../torch/04-SGD.html">11. Gradient Descent (GD)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../torch/05-Autograd.html">12. Autograd</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../torch/01-torch-installation.html">11. <code class="docutils literal notranslate"><span class="pre">torch</span></code> Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../torch/02-tensorflow-installation.html">12. <code class="docutils literal notranslate"><span class="pre">Keras</span></code> installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../torch/03-Tensor.html">13. Tensor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../torch/04-SGD.html">14. Gradient Descent (GD)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../torch/05-Autograd.html">15. Autograd</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Computer Vision</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../cv/Chapter10-CNN.html">13. Convolution Neural Network</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cv/Chapter10-CNN.html">16. Convolution Neural Network</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Natural Language Processing</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">14. Natural Language Processing</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">17. Natural Language Processing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Chapter10-RNN.html">18. Recurrent Neural Networks</a></li>
+
+
+
+
 </ul>
 
     </div>
@@ -216,7 +228,7 @@
 
       </div>
       
-      <main id="main-content" class="bd-main">
+      <main id="main-content" class="bd-main" role="main">
         
         
 
@@ -225,14 +237,14 @@
           <div class="bd-content">
             <div class="bd-article-container">
               
-              <div class="bd-header-article">
+              <div class="bd-header-article d-print-none">
 <div class="header-article-items header-article__inner">
   
     <div class="header-article-items__start">
       
-        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
   <span class="fa-solid fa-bars"></span>
-</label></div>
+</button></div>
       
     </div>
   
@@ -257,14 +269,14 @@
       
       <li><a href="https://mybinder.org/v2/gh/gisyaliny/gisc-6323/master?urlpath=tree/book/nlp/Chapter10-NLP.ipynb" target="_blank"
    class="btn btn-sm dropdown-item"
-   title="Launch onBinder"
+   title="Launch on Binder"
    data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
 
 <span class="btn__icon-container">
   
-    <img src="../../_static/images/logo_binder.svg">
+    <img alt="Binder logo" src="../../_static/images/logo_binder.svg">
   </span>
 <span class="btn__text-container">Binder</span>
 </a>
@@ -275,14 +287,14 @@
       
       <li><a href="https://colab.research.google.com/github/gisyaliny/gisc-6323/blob/master/book/nlp/Chapter10-NLP.ipynb" target="_blank"
    class="btn btn-sm dropdown-item"
-   title="Launch onColab"
+   title="Launch on Colab"
    data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
 
 <span class="btn__icon-container">
   
-    <img src="../../_static/images/logo_colab.png">
+    <img alt="Colab logo" src="../../_static/images/logo_colab.png">
   </span>
 <span class="btn__text-container">Colab</span>
 </a>
@@ -423,10 +435,10 @@
 
 <script>
 document.write(`
-  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
-    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
-    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
   </button>
 `);
 </script>
@@ -434,14 +446,14 @@ document.write(`
 
 <script>
 document.write(`
-  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
   </button>
 `);
 </script>
-<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
-</label>
+</button>
 </div></div>
       
     </div>
@@ -462,46 +474,46 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#word-to-matrix-vectors">14.1. Word to Matrix / Vectors</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bag-of-words">14.1.1. Bag-of-Words</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#drawbacks">14.1.1.1. Drawbacks</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#word-to-matrix-vectors">17.1. Word to Matrix / Vectors</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bag-of-words">17.1.1. Bag-of-Words</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#drawbacks">17.1.1.1. Drawbacks</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#n-grams">14.1.2. N-grams</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#advantages">14.1.2.1. Advantages</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">14.1.2.2. Drawbacks</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mitigation-strategies">14.1.2.3. Mitigation Strategies</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#n-grams">17.1.2. N-grams</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#advantages">17.1.2.1. Advantages</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">17.1.2.2. Drawbacks</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mitigation-strategies">17.1.2.3. Mitigation Strategies</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tf-idf">14.2. TF-IDF</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#term-frequency-tf">14.2.1. Term Frequency (TF)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#inverse-document-frequency-idf">14.2.2. Inverse Document Frequency (IDF)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">14.2.3. Drawbacks</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example">14.2.4. Example</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tf-idf">17.2. TF-IDF</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#term-frequency-tf">17.2.1. Term Frequency (TF)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#inverse-document-frequency-idf">17.2.2. Inverse Document Frequency (IDF)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">17.2.3. Drawbacks</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example">17.2.4. Example</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#word-embeddings-word2vec-fasttext">14.3. Word Embeddings (Word2Vec, FastText)</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#word2vec">14.3.1. Word2Vec</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fasttext">14.3.2. FastText</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">14.3.3. Drawbacks</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#word-embeddings-word2vec-fasttext">17.3. Word Embeddings (Word2Vec, FastText)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#word2vec">17.3.1. Word2Vec</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fasttext">17.3.2. FastText</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">17.3.3. Drawbacks</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#glove-global-vectors-for-word-representation">14.4. GloVe (Global Vectors for Word Representation)</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#design-purpose">14.4.1. Design Purpose:</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#advantage">14.4.2. Advantage</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">14.4.3. Drawbacks</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-of-co-occurrence-matrix">14.4.4. Example of co-occurrence matrix</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#glove-global-vectors-for-word-representation">17.4. GloVe (Global Vectors for Word Representation)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#design-purpose">17.4.1. Design Purpose:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#advantage">17.4.2. Advantage</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">17.4.3. Drawbacks</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-of-co-occurrence-matrix">17.4.4. Example of co-occurrence matrix</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contextualized-word-embeddings-elmo-and-bert">14.5. Contextualized word embeddings (ELMo and BERT)</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#elmo-embeddings-from-language-models">14.5.1. ELMo (Embeddings from Language Models)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bert-bidirectional-encoder-representations-from-transformers">14.5.2. BERT (Bidirectional Encoder Representations from Transformers)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contextualized-word-embeddings-elmo-and-bert">17.5. Contextualized word embeddings (ELMo and BERT)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#elmo-embeddings-from-language-models">17.5.1. ELMo (Embeddings from Language Models)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bert-bidirectional-encoder-representations-from-transformers">17.5.2. BERT (Bidirectional Encoder Representations from Transformers)</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#topic-modeling-lda-lsa">14.6. Topic Modeling (LDA, LSA)</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#latent-dirichlet-allocation-lda">14.6.1. Latent Dirichlet Allocation (LDA)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#topic-modeling-lda-lsa">17.6. Topic Modeling (LDA, LSA)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#latent-dirichlet-allocation-lda">17.6.1. Latent Dirichlet Allocation (LDA)</a></li>
 </ul>
 </li>
 </ul>
@@ -516,12 +528,12 @@ document.write(`
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="natural-language-processing">
-<h1><span class="section-number">14. </span>Natural Language Processing<a class="headerlink" href="#natural-language-processing" title="Link to this heading">#</a></h1>
+<h1><span class="section-number">17. </span>Natural Language Processing<a class="headerlink" href="#natural-language-processing" title="Link to this heading">#</a></h1>
 <section id="word-to-matrix-vectors">
-<h2><span class="section-number">14.1. </span>Word to Matrix / Vectors<a class="headerlink" href="#word-to-matrix-vectors" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">17.1. </span>Word to Matrix / Vectors<a class="headerlink" href="#word-to-matrix-vectors" title="Link to this heading">#</a></h2>
 <p>Documents have different length, and consist of sequences of words. How do we create features X to characterize a document?</p>
 <section id="bag-of-words">
-<h3><span class="section-number">14.1.1. </span>Bag-of-Words<a class="headerlink" href="#bag-of-words" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">17.1.1. </span>Bag-of-Words<a class="headerlink" href="#bag-of-words" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>From a dictionary, identify the 10K most frequently occurring words.</p></li>
 <li><p>Create a binary vector of length <span class="math notranslate nohighlight">\(p=10K\)</span> for each document, and score a 1 in every position that the corresponding word occurred.</p>
@@ -531,7 +543,7 @@ document.write(`
 </li>
 </ul>
 <section id="drawbacks">
-<h4><span class="section-number">14.1.1.1. </span>Drawbacks<a class="headerlink" href="#drawbacks" title="Link to this heading">#</a></h4>
+<h4><span class="section-number">17.1.1.1. </span>Drawbacks<a class="headerlink" href="#drawbacks" title="Link to this heading">#</a></h4>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">Bag-of-Words</span> <span class="pre">(BoW)</span></code> <strong>does not consider the sequence of words</strong> in the text. It consider words independently, we call it <code class="docutils literal notranslate"><span class="pre">unigrams</span></code>. We can instead use <code class="docutils literal notranslate"><span class="pre">bigrams</span></code> (occurrences of adjacent word pairs), and in general <code class="docutils literal notranslate"><span class="pre">n-grams</span></code>.</p></li>
 </ul>
@@ -539,24 +551,24 @@ document.write(`
 </section>
 </section>
 <section id="n-grams">
-<h3><span class="section-number">14.1.2. </span>N-grams<a class="headerlink" href="#n-grams" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">17.1.2. </span>N-grams<a class="headerlink" href="#n-grams" title="Link to this heading">#</a></h3>
 <p>N-grams are contiguous sequences of n items (words, characters, or tokens) extracted from a text corpus. In the context of natural language processing (NLP), N-grams are commonly used to capture patterns and dependencies between words in a sequence of text.</p>
 <section id="advantages">
-<h4><span class="section-number">14.1.2.1. </span>Advantages<a class="headerlink" href="#advantages" title="Link to this heading">#</a></h4>
+<h4><span class="section-number">17.1.2.1. </span>Advantages<a class="headerlink" href="#advantages" title="Link to this heading">#</a></h4>
 <ul class="simple">
 <li><p><strong>Capturing Context</strong>: N-grams preserve some level of word order and context, allowing models to capture dependencies between adjacent words.</p></li>
 <li><p><strong>Flexibility</strong>: N-grams can be adjusted to different granularities (<code class="docutils literal notranslate"><span class="pre">unigrams</span></code>, <code class="docutils literal notranslate"><span class="pre">bigrams</span></code>, <code class="docutils literal notranslate"><span class="pre">trigrams</span></code>, etc.), providing flexibility in capturing different levels of context.</p></li>
 </ul>
 </section>
 <section id="id1">
-<h4><span class="section-number">14.1.2.2. </span>Drawbacks<a class="headerlink" href="#id1" title="Link to this heading">#</a></h4>
+<h4><span class="section-number">17.1.2.2. </span>Drawbacks<a class="headerlink" href="#id1" title="Link to this heading">#</a></h4>
 <ul class="simple">
 <li><p><strong>Data Sparsity:</strong> As the length of the n-grams increases, the number of unique combinations grows exponentially, leading to sparsity issues, especially with smaller datasets.</p></li>
 <li><p><strong>Lack of Generalization</strong>: N-grams may <strong>overfit</strong> to specific patterns present in the training data, making them less generalizable to unseen data.</p></li>
 </ul>
 </section>
 <section id="mitigation-strategies">
-<h4><span class="section-number">14.1.2.3. </span>Mitigation Strategies<a class="headerlink" href="#mitigation-strategies" title="Link to this heading">#</a></h4>
+<h4><span class="section-number">17.1.2.3. </span>Mitigation Strategies<a class="headerlink" href="#mitigation-strategies" title="Link to this heading">#</a></h4>
 <ul class="simple">
 <li><p><strong>Pruning</strong>: Limit the vocabulary size or discard low-frequency n-grams to reduce computational complexity.</p></li>
 <li><p><strong>Smoothing</strong>: Address data sparsity issues by smoothing probabilities of unseen n-grams.</p></li>
@@ -566,7 +578,7 @@ document.write(`
 </section>
 </section>
 <section id="tf-idf">
-<h2><span class="section-number">14.2. </span>TF-IDF<a class="headerlink" href="#tf-idf" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">17.2. </span>TF-IDF<a class="headerlink" href="#tf-idf" title="Link to this heading">#</a></h2>
 <ul>
 <li><p><a class="reference external" href="https://www.kdnuggets.com/2022/09/convert-text-documents-tfidf-matrix-tfidfvectorizer.html">Reference</a></p>
 <div class="math notranslate nohighlight">
@@ -576,7 +588,7 @@ document.write(`
 </li>
 </ul>
 <section id="term-frequency-tf">
-<h3><span class="section-number">14.2.1. </span>Term Frequency (TF)<a class="headerlink" href="#term-frequency-tf" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">17.2.1. </span>Term Frequency (TF)<a class="headerlink" href="#term-frequency-tf" title="Link to this heading">#</a></h3>
 <p>Measures how frequently a term (word) occurs in a document.</p>
 <ul class="simple">
 <li><p>It is calculated as the ratio of the number of times a term appears in a document to the total number of terms in the document.
@@ -586,7 +598,7 @@ TF(t,d) = \frac{Number\: of\: occurrences\: of\: term\: t\: in\: document\: d}{T
 </ul>
 </section>
 <section id="inverse-document-frequency-idf">
-<h3><span class="section-number">14.2.2. </span>Inverse Document Frequency (IDF)<a class="headerlink" href="#inverse-document-frequency-idf" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">17.2.2. </span>Inverse Document Frequency (IDF)<a class="headerlink" href="#inverse-document-frequency-idf" title="Link to this heading">#</a></h3>
 <p>Measures <strong>how important a term is</strong> across the entire collection of documents.</p>
 <ul>
 <li><p>It is calculated as the logarithm of the ratio of the total number of documents to the number of documents containing the term, with a smoothing term to avoid division by zero.</p>
@@ -601,14 +613,14 @@ TF(t,d) = \frac{Number\: of\: occurrences\: of\: term\: t\: in\: document\: d}{T
 <p><img alt="image.png" src="../../_images/031.png" /></p>
 </section>
 <section id="id2">
-<h3><span class="section-number">14.2.3. </span>Drawbacks<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">17.2.3. </span>Drawbacks<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">BoW</span></code> and <code class="docutils literal notranslate"><span class="pre">TF-IDF</span></code> represent words as sparse vectors of counts or weighted frequencies, respectively, without <strong>capturing semantic relationships between words</strong>.</p></li>
 <li><p>They may <strong>struggle to handle out-of-vocabulary words</strong> and fail to capture subtle semantic similarities between words.</p></li>
 </ul>
 </section>
 <section id="example">
-<h3><span class="section-number">14.2.4. </span>Example<a class="headerlink" href="#example" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">17.2.4. </span>Example<a class="headerlink" href="#example" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>In this tutorial, we are going to use <code class="docutils literal notranslate"><span class="pre">TfidfVectorizer</span></code> from <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code> to convert the text and view the <code class="docutils literal notranslate"><span class="pre">TF-IDF</span></code> matrix.</p></li>
 <li><p>In the code below, we have a small corpus of 4 documents.</p>
@@ -811,7 +823,7 @@ TF(t,d) = \frac{Number\: of\: occurrences\: of\: term\: t\: in\: document\: d}{T
 </section>
 </section>
 <section id="word-embeddings-word2vec-fasttext">
-<h2><span class="section-number">14.3. </span>Word Embeddings (Word2Vec, FastText)<a class="headerlink" href="#word-embeddings-word2vec-fasttext" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">17.3. </span>Word Embeddings (Word2Vec, FastText)<a class="headerlink" href="#word-embeddings-word2vec-fasttext" title="Link to this heading">#</a></h2>
 <ul>
 <li><p><a class="reference external" href="https://kavita-ganesan.com/fasttext-vs-word2vec/">Reference</a></p>
 <p>Word Embeddings are dense vector representations of words in a continuous vector space, where <strong>words with similar meanings are represented by vectors that are close together</strong>.</p>
@@ -819,7 +831,7 @@ TF(t,d) = \frac{Number\: of\: occurrences\: of\: term\: t\: in\: document\: d}{T
 </ul>
 <p><img alt="image.png" src="../../_images/041.png" /></p>
 <section id="word2vec">
-<h3><span class="section-number">14.3.1. </span>Word2Vec<a class="headerlink" href="#word2vec" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">17.3.1. </span>Word2Vec<a class="headerlink" href="#word2vec" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">Word2Vec</span></code>, introduced by Mikolov et al. in 2013, aims to learn word embeddings by predicting the context of words in a large corpus. It uses shallow neural networks to learn distributed representations of words based on their co-occurrence patterns.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">Word2Vec</span></code> uses a <code class="docutils literal notranslate"><span class="pre">softmax</span></code> function and <code class="docutils literal notranslate"><span class="pre">negative</span> <span class="pre">sampling</span></code> or <code class="docutils literal notranslate"><span class="pre">hierarchical</span> <span class="pre">softmax</span></code> to train the neural network efficiently.</p></li>
@@ -833,7 +845,7 @@ TF(t,d) = \frac{Number\: of\: occurrences\: of\: term\: t\: in\: document\: d}{T
 <p><img alt="image.png" src="../../_images/051.png" /></p>
 </section>
 <section id="fasttext">
-<h3><span class="section-number">14.3.2. </span>FastText<a class="headerlink" href="#fasttext" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">17.3.2. </span>FastText<a class="headerlink" href="#fasttext" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">FastText</span></code>, also developed by Mikolov et al., extends <code class="docutils literal notranslate"><span class="pre">Word2Vec</span></code> by <strong>considering subword information</strong>. It learns embeddings <strong>not only for complete words but also for character n-grams</strong>, allowing it to capture morphological information and handle out-of-vocabulary words better.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">FastText</span></code> extends <code class="docutils literal notranslate"><span class="pre">Word2Vec</span></code> by representing words as the sum of the embeddings of their <code class="docutils literal notranslate"><span class="pre">character</span> <span class="pre">n-grams</span></code>.</p>
@@ -846,7 +858,7 @@ TF(t,d) = \frac{Number\: of\: occurrences\: of\: term\: t\: in\: document\: d}{T
 <p><img alt="image.png" src="../../_images/061.png" /></p>
 </section>
 <section id="id3">
-<h3><span class="section-number">14.3.3. </span>Drawbacks<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">17.3.3. </span>Drawbacks<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Word embeddings <strong>require a large corpus of text data</strong> for training and may not perform well with small datasets.</p></li>
 <li><p>They also rely heavily on the quality of the training data and may encode biases present in the corpus.</p></li>
@@ -854,17 +866,17 @@ TF(t,d) = \frac{Number\: of\: occurrences\: of\: term\: t\: in\: document\: d}{T
 </section>
 </section>
 <section id="glove-global-vectors-for-word-representation">
-<h2><span class="section-number">14.4. </span>GloVe (Global Vectors for Word Representation)<a class="headerlink" href="#glove-global-vectors-for-word-representation" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">17.4. </span>GloVe (Global Vectors for Word Representation)<a class="headerlink" href="#glove-global-vectors-for-word-representation" title="Link to this heading">#</a></h2>
 <p>GloVe (Global Vectors for Word Representation) is a word embedding model introduced by Jeffrey Pennington, Richard Socher, and Christopher D. Manning in 2014. It is an <strong>unsupervised learning</strong> algorithm used for obtaining <strong>vector representations</strong> for words.</p>
 <section id="design-purpose">
-<h3><span class="section-number">14.4.1. </span>Design Purpose:<a class="headerlink" href="#design-purpose" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">17.4.1. </span>Design Purpose:<a class="headerlink" href="#design-purpose" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>GloVe constructs a co-occurrence matrix where each entry represents the number of times a word co-occurs with another word in the global corpus.</p></li>
 <li><p>It then learns word vectors by minimizing a weighted least squares regression objective function that captures the relationship between word vectors and their co-occurrence probabilities.</p></li>
 </ul>
 </section>
 <section id="advantage">
-<h3><span class="section-number">14.4.2. </span>Advantage<a class="headerlink" href="#advantage" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">17.4.2. </span>Advantage<a class="headerlink" href="#advantage" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p><strong>Global Co-occurrence Information</strong>: GloVe leverages global <code class="docutils literal notranslate"><span class="pre">word</span> <span class="pre">co-occurrence</span> <span class="pre">statistics</span></code>, capturing richer semantic relationships between words beyond local contexts. It considers the <code class="docutils literal notranslate"><span class="pre">entire</span> <span class="pre">corpus</span></code> when learning word embeddings, which can lead to more informative embeddings.</p></li>
 <li><p><strong>Robustness to Out-of-Vocabulary Words</strong>: GloVe can handle out-of-vocabulary words better than Word2Vec and FastText by leveraging global statistics. It can capture semantic similarities between words even if they do not appear frequently in local contexts.</p></li>
@@ -872,7 +884,7 @@ TF(t,d) = \frac{Number\: of\: occurrences\: of\: term\: t\: in\: document\: d}{T
 </ul>
 </section>
 <section id="id4">
-<h3><span class="section-number">14.4.3. </span>Drawbacks<a class="headerlink" href="#id4" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">17.4.3. </span>Drawbacks<a class="headerlink" href="#id4" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p><strong>Memory Intensive</strong>: GloVe requires storing a large co-occurrence matrix in memory, which can be memory-intensive, especially for very large corpora.</p></li>
 <li><p><strong>Training Complexity</strong>: Although GloVe’s objective function is relatively simple compared to neural network-based methods like Word2Vec, training GloVe still involves optimizing a large number of parameters.</p></li>
@@ -880,7 +892,7 @@ TF(t,d) = \frac{Number\: of\: occurrences\: of\: term\: t\: in\: document\: d}{T
 </ul>
 </section>
 <section id="example-of-co-occurrence-matrix">
-<h3><span class="section-number">14.4.4. </span>Example of co-occurrence matrix<a class="headerlink" href="#example-of-co-occurrence-matrix" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">17.4.4. </span>Example of co-occurrence matrix<a class="headerlink" href="#example-of-co-occurrence-matrix" title="Link to this heading">#</a></h3>
 <p>Consider the following small corpus consisting of three sentences:</p>
 <ol class="arabic simple">
 <li><p>“I like natural language processing.”</p></li>
@@ -972,9 +984,9 @@ Co-occurrence matrix:
 </section>
 </section>
 <section id="contextualized-word-embeddings-elmo-and-bert">
-<h2><span class="section-number">14.5. </span>Contextualized word embeddings (ELMo and BERT)<a class="headerlink" href="#contextualized-word-embeddings-elmo-and-bert" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">17.5. </span>Contextualized word embeddings (ELMo and BERT)<a class="headerlink" href="#contextualized-word-embeddings-elmo-and-bert" title="Link to this heading">#</a></h2>
 <section id="elmo-embeddings-from-language-models">
-<h3><span class="section-number">14.5.1. </span>ELMo (Embeddings from Language Models)<a class="headerlink" href="#elmo-embeddings-from-language-models" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">17.5.1. </span>ELMo (Embeddings from Language Models)<a class="headerlink" href="#elmo-embeddings-from-language-models" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p><a class="reference external" href="https://ireneli.eu/2018/12/17/elmo-in-practice/">Reference</a></p></li>
 <li><p><strong>Design Purpose:</strong> ELMo was introduced by Matthew Peters and colleagues in 2018. It leverages deep contextualized word representations learned from <code class="docutils literal notranslate"><span class="pre">bidirectional</span> <span class="pre">language</span> <span class="pre">models</span></code> trained on large text corpora.</p>
@@ -996,7 +1008,7 @@ Co-occurrence matrix:
 <p><img alt="image.png" src="../../_images/071.png" /></p>
 </section>
 <section id="bert-bidirectional-encoder-representations-from-transformers">
-<h3><span class="section-number">14.5.2. </span>BERT (Bidirectional Encoder Representations from Transformers)<a class="headerlink" href="#bert-bidirectional-encoder-representations-from-transformers" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">17.5.2. </span>BERT (Bidirectional Encoder Representations from Transformers)<a class="headerlink" href="#bert-bidirectional-encoder-representations-from-transformers" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p><a class="reference external" href="https://www.geeksforgeeks.org/understanding-bert-nlp/">Reference</a></p></li>
 <li><p><strong>Design Purpose</strong>: <code class="docutils literal notranslate"><span class="pre">BERT</span></code>, introduced by Jacob Devlin and colleagues at Google AI in 2018, is a <code class="docutils literal notranslate"><span class="pre">transformer-based</span> <span class="pre">model</span></code> designed to generate deep contextualized word representations.</p>
@@ -1019,14 +1031,14 @@ Co-occurrence matrix:
 </section>
 </section>
 <section id="topic-modeling-lda-lsa">
-<h2><span class="section-number">14.6. </span>Topic Modeling (LDA, LSA)<a class="headerlink" href="#topic-modeling-lda-lsa" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">17.6. </span>Topic Modeling (LDA, LSA)<a class="headerlink" href="#topic-modeling-lda-lsa" title="Link to this heading">#</a></h2>
 <p>Topic Modeling is a technique used in natural language processing (NLP) to discover the <strong>latent thematic structure</strong> present in a collection of documents.</p>
 <ul class="simple">
 <li><p>It aims to <strong>identify topics or themes</strong> that pervade a corpus and the distribution of these topics across the documents.</p></li>
 <li><p>Two popular methods for topic modeling are <code class="docutils literal notranslate"><span class="pre">Latent</span> <span class="pre">Dirichlet</span> <span class="pre">Allocation</span> <span class="pre">(LDA)</span></code> and <code class="docutils literal notranslate"><span class="pre">Latent</span> <span class="pre">Semantic</span> <span class="pre">Analysis</span> <span class="pre">(LSA)</span></code>.</p></li>
 </ul>
 <section id="latent-dirichlet-allocation-lda">
-<h3><span class="section-number">14.6.1. </span>Latent Dirichlet Allocation (LDA)<a class="headerlink" href="#latent-dirichlet-allocation-lda" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">17.6.1. </span>Latent Dirichlet Allocation (LDA)<a class="headerlink" href="#latent-dirichlet-allocation-lda" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p><a class="reference external" href="https://www.analyticsvidhya.com/blog/2021/06/part-2-topic-modeling-and-latent-dirichlet-allocation-lda-using-gensim-and-sklearn/">Reference</a></p></li>
 <li><p><strong>Design Purpose</strong>: <code class="docutils literal notranslate"><span class="pre">LDA</span></code>, introduced by Blei et al. in 2003, is a probabilistic generative model for topic modeling.</p>
@@ -1079,7 +1091,7 @@ Co-occurrence matrix:
               
               
               
-                <footer class="prev-next-footer">
+                <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
     <a class="left-prev"
@@ -1088,8 +1100,17 @@ Co-occurrence matrix:
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">13. </span>Convolution Neural Network</p>
+        <p class="prev-next-title"><span class="section-number">16. </span>Convolution Neural Network</p>
       </div>
+    </a>
+    <a class="right-next"
+       href="Chapter10-RNN.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">18. </span>Recurrent Neural Networks</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
                 </footer>
@@ -1107,46 +1128,46 @@ Co-occurrence matrix:
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#word-to-matrix-vectors">14.1. Word to Matrix / Vectors</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bag-of-words">14.1.1. Bag-of-Words</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#drawbacks">14.1.1.1. Drawbacks</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#word-to-matrix-vectors">17.1. Word to Matrix / Vectors</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bag-of-words">17.1.1. Bag-of-Words</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#drawbacks">17.1.1.1. Drawbacks</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#n-grams">14.1.2. N-grams</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#advantages">14.1.2.1. Advantages</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">14.1.2.2. Drawbacks</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mitigation-strategies">14.1.2.3. Mitigation Strategies</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#n-grams">17.1.2. N-grams</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#advantages">17.1.2.1. Advantages</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">17.1.2.2. Drawbacks</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mitigation-strategies">17.1.2.3. Mitigation Strategies</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tf-idf">14.2. TF-IDF</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#term-frequency-tf">14.2.1. Term Frequency (TF)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#inverse-document-frequency-idf">14.2.2. Inverse Document Frequency (IDF)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">14.2.3. Drawbacks</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example">14.2.4. Example</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tf-idf">17.2. TF-IDF</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#term-frequency-tf">17.2.1. Term Frequency (TF)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#inverse-document-frequency-idf">17.2.2. Inverse Document Frequency (IDF)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">17.2.3. Drawbacks</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example">17.2.4. Example</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#word-embeddings-word2vec-fasttext">14.3. Word Embeddings (Word2Vec, FastText)</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#word2vec">14.3.1. Word2Vec</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fasttext">14.3.2. FastText</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">14.3.3. Drawbacks</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#word-embeddings-word2vec-fasttext">17.3. Word Embeddings (Word2Vec, FastText)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#word2vec">17.3.1. Word2Vec</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fasttext">17.3.2. FastText</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">17.3.3. Drawbacks</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#glove-global-vectors-for-word-representation">14.4. GloVe (Global Vectors for Word Representation)</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#design-purpose">14.4.1. Design Purpose:</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#advantage">14.4.2. Advantage</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">14.4.3. Drawbacks</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-of-co-occurrence-matrix">14.4.4. Example of co-occurrence matrix</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#glove-global-vectors-for-word-representation">17.4. GloVe (Global Vectors for Word Representation)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#design-purpose">17.4.1. Design Purpose:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#advantage">17.4.2. Advantage</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">17.4.3. Drawbacks</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-of-co-occurrence-matrix">17.4.4. Example of co-occurrence matrix</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contextualized-word-embeddings-elmo-and-bert">14.5. Contextualized word embeddings (ELMo and BERT)</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#elmo-embeddings-from-language-models">14.5.1. ELMo (Embeddings from Language Models)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bert-bidirectional-encoder-representations-from-transformers">14.5.2. BERT (Bidirectional Encoder Representations from Transformers)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contextualized-word-embeddings-elmo-and-bert">17.5. Contextualized word embeddings (ELMo and BERT)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#elmo-embeddings-from-language-models">17.5.1. ELMo (Embeddings from Language Models)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bert-bidirectional-encoder-representations-from-transformers">17.5.2. BERT (Bidirectional Encoder Representations from Transformers)</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#topic-modeling-lda-lsa">14.6. Topic Modeling (LDA, LSA)</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#latent-dirichlet-allocation-lda">14.6.1. Latent Dirichlet Allocation (LDA)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#topic-modeling-lda-lsa">17.6. Topic Modeling (LDA, LSA)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#latent-dirichlet-allocation-lda">17.6.1. Latent Dirichlet Allocation (LDA)</a></li>
 </ul>
 </li>
 </ul>
@@ -1197,8 +1218,8 @@ By Yalin Yang
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
-<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
 
   <footer class="bd-footer">
   </footer>
