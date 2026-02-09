@@ -8,3 +8,4 @@ private/
 **/*.geojson
 **/cities.*
 **/nyc*
+reference/*

@@ -21,6 +21,9 @@ parts:
     - file: book/tranditional/Chapter6-Model-Selection
     - file: book/tranditional/Chapter6-Dimention-Reduction
     - file: book/tranditional/Chapter7-non-linear-regression
+    - file: book/tranditional/Chapter4-Logistic-Regression
+    - file: book/tranditional/Chapter8-Tree-Based-Methods
+    - file: book/tranditional/Chapter9-Support-Vector-Machines
   - caption: Deep Learning Basic
     numbered: true
     maxdepth: 2
@@ -40,6 +43,7 @@ parts:
     maxdepth: 2
     chapters:
       - file: book/nlp/Chapter10-NLP
+      - file: book/nlp/Chapter10-RNN
   # - caption: Appendix
   #   chapters:
   #     - file: book/gee/bibliography
